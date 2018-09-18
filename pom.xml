@@ -18,6 +18,8 @@
     <javaee.version>8.0</javaee.version>
     <lombok.version>1.18.2</lombok.version>
 
+    <glassfish.location>C:/JavaEE/glassfish5</glassfish.location>
+
     <mavencompiler.version>3.5.1</mavencompiler.version>
     <mavenbuilder.version>3.0.0</mavenbuilder.version>
     <mavendeploy.version>2.2</mavendeploy.version>
@@ -84,6 +86,31 @@
           <url>http://localhost:8080/manager/text</url>
           <server>TomcatServer</server>
           <path>/${project.build.finalName}</path>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.codehaus.cargo</groupId>
+        <artifactId>cargo-maven2-plugin</artifactId>
+        <configuration>
+          <container>
+            <containerId>glassfish5x</containerId>
+            <type>installed</type>
+            <!-- Path to directory where glassfish is installed -->
+            <home>${glassfish.location}</home>
+          </container>
+          <configuration>
+            <type>existing</type>
+            <!-- Path to domains directory -->
+            <home>${glassfish.location}/glassfish/domains</home>
+            <properties>
+              <!-- Domain name where application will be deployed. -->
+              <cargo.glassfish.domain.name>domain1</cargo.glassfish.domain.name>
+              <!-- Glassfish user to authenticate -->
+              <cargo.remote.username>admin</cargo.remote.username>
+              <!-- Glassfish password to authenticate -->
+              <cargo.remote.password></cargo.remote.password>
+            </properties>
+          </configuration>
         </configuration>
       </plugin>
     </plugins>
