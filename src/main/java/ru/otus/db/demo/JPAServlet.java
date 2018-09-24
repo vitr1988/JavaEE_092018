@@ -1,4 +1,4 @@
-package ru.otus.db;
+package ru.otus.db.demo;
 
 import ru.otus.db.entity.EmpEntity;
 
