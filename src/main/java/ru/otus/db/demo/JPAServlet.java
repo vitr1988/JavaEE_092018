@@ -17,16 +17,18 @@ public class JPAServlet extends HttpServlet {
 
     public static final String PERSISTENCE_UNIT_NAME = "jpa";
 
-    private static final EntityManagerFactory emf = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
+    private static final EntityManagerFactory emf =
+          Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME); // for Tomcat
 
-//    @PersistenceContext(unitName=PERSISTENCE_UNIT_NAME)
-//    EntityManagerFactory emf;
+//    @PersistenceUnit(unitName = PERSISTENCE_UNIT_NAME)
+//    EntityManagerFactory emf; // for Glassfish
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        EntityManager em = emf.createEntityManager();
+        EntityManager em = emf.createEntityManager(); // for Tomcat
         EntityTransaction transaction = em.getTransaction();
         try {
+            transaction.begin();
             Query q = em.createQuery("select emp from EmpEntity emp");
             List<EmpEntity> result = q.getResultList();
             try (PrintWriter pw = response.getWriter()){

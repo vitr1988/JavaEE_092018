@@ -20,6 +20,7 @@
     <hibernate.version>5.3.6.Final</hibernate.version>
     <junit.version>4.11</junit.version>
     <h2.version>1.4.197</h2.version>
+    <oracle.driver.version>11.2.0.4</oracle.driver.version>
 
     <tomcat.deploymentPath>http://localhost:8080/manager/text</tomcat.deploymentPath>
     <glassfish.location>C:/JavaEE/glassfish5</glassfish.location>
@@ -52,6 +53,13 @@
     </dependency>
 
     <dependency>
+      <groupId>com.oracle.jdbc</groupId>
+      <artifactId>ojdbc6</artifactId>
+      <version>${oracle.driver.version}</version>
+      <scope>compile</scope>
+    </dependency>
+
+    <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
       <version>${junit.version}</version>
@@ -65,6 +73,33 @@
       <scope>test</scope>
     </dependency>
   </dependencies>
+
+  <!-- Oracle Maven Repository -->
+  <repositories>
+    <repository>
+      <id>maven.oracle.com</id>
+      <name>oracle-maven-repo</name>
+      <url>https://maven.oracle.com</url>
+      <layout>default</layout>
+      <releases>
+        <enabled>true</enabled>
+        <updatePolicy>always</updatePolicy>
+      </releases>
+    </repository>
+  </repositories>
+
+  <pluginRepositories>
+    <pluginRepository>
+      <id>maven.oracle.com</id>
+      <name>oracle-maven-repo</name>
+      <url>https://maven.oracle.com</url>
+      <layout>default</layout>
+      <releases>
+        <enabled>true</enabled>
+        <updatePolicy>always</updatePolicy>
+      </releases>
+    </pluginRepository>
+  </pluginRepositories>
 
   <build>
     <finalName>JavaEE</finalName>

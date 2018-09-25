@@ -19,7 +19,8 @@ import java.util.stream.Stream;
 @WebServlet("/jdbc")
 public class JDBCServlet extends HttpServlet {
 
-    @Resource(name = "jdbc/OracleDS")
+    @Resource(name = "jdbc/OracleDS") // for Tomcat
+//    @Resource(lookup = "jdbc/OracleDS") // for Glassfish
     private DataSource ds;
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
