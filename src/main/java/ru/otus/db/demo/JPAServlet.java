@@ -29,7 +29,10 @@ public class JPAServlet extends HttpServlet {
         EntityTransaction transaction = em.getTransaction();
         try {
             transaction.begin();
-            Query q = em.createQuery("select emp from EmpEntity emp");
+            Query q = em.createQuery(
+                    "select emp from EmpEntity emp JOIN emp.deptNo dept " +
+                    "where emp.deptNo.id = :deptId");
+            q.setParameter("deptId", 10L);
             List<EmpEntity> result = q.getResultList();
             try (PrintWriter pw = response.getWriter()){
                 result.stream().forEach(pw::println);

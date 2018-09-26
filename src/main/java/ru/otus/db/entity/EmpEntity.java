@@ -39,4 +39,8 @@ public class EmpEntity implements Serializable {
     @Column(name = "COMM")
     private Long comm;
 
+    @ManyToOne
+    @JoinColumn(name = "DEPTNO", referencedColumnName = "DEPTNO")
+    private DeptEntity deptNo;
+
 }
