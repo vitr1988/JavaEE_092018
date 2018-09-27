@@ -10,9 +10,15 @@ public class Generator {
     }
 
     public static String generateLetter(int length) {
-        String alphabet = "АБВГДЕЁЖЭИЙКЛМНОПРСТУФХЦЧШЭЮЯ"; // без Ъ и Ь
+        String alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
         StringBuilder sb = new StringBuilder();
         IntStream.range(0, length).forEach(i -> sb.append(alphabet.charAt(new Random().nextInt(alphabet.length()))));
         return sb.toString();
+    }
+
+    public static Long generateDigits(int length){
+        StringBuilder sb = new StringBuilder();
+        IntStream.range(0, length).forEach(i -> sb.append(new Random().nextInt(10)));
+        return Long.valueOf(sb.toString());
     }
 }

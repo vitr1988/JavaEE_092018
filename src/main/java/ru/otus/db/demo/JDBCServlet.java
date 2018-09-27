@@ -1,5 +1,7 @@
 package ru.otus.db.demo;
 
+import ru.otus.db.demo.util.Generator;
+
 import javax.annotation.Resource;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -23,6 +25,7 @@ public class JDBCServlet extends HttpServlet {
 //    @Resource(lookup = "jdbc/OracleDS") // for Glassfish
     private DataSource ds;
 
+    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try (Connection conn = ds.getConnection();
              PreparedStatement ps = conn.prepareStatement("select * from emp");
@@ -42,4 +45,59 @@ public class JDBCServlet extends HttpServlet {
             throw new ServletException(e);
         }
     }
+
+    private String lastName;
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        try (Connection conn = ds.getConnection();
+             PreparedStatement ps = conn.prepareStatement(
+                     "insert into emp(empno, ename, job, deptno) " +
+                             "values(?, ?, ?, ?)")){
+            ps.setLong(1, Generator.generateDigits(4));
+            ps.setString(2, lastName = Generator.generateName());
+            ps.setString(3, "DEVELOPER");
+            ps.setLong(4, 10L);
+            ps.executeUpdate();
+            response.getWriter().println("Employee '" + lastName + "' has been successfully created");
+        } catch (SQLException e) {
+            throw new ServletException(e);
+        }
+    }
+
+    @Override
+    protected void doPut(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        if (lastName == null) return;
+
+        try (Connection conn = ds.getConnection();
+             PreparedStatement ps = conn.prepareStatement(
+                     "update emp " +
+                             "set job = ?, deptno = ? " +
+                             "where ename = ?")){
+            ps.setString(1, "BOSS");
+            ps.setLong(2, 20L);
+            ps.setString(3, lastName);
+            ps.executeUpdate();
+            response.getWriter().println("Employee '" + lastName + "' has been successfully updated");
+        } catch (SQLException e) {
+            throw new ServletException(e);
+        }
+    }
+
+    @Override
+    protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        if (lastName == null) return;
+        try (Connection conn = ds.getConnection();
+             PreparedStatement ps = conn.prepareStatement(
+                     "delete from emp " +
+                             "where ename = ?")){
+            ps.setString(1, lastName);
+            ps.executeUpdate();
+            response.getWriter().println("Employee '" + lastName + "' has been successfully deleted");
+            lastName = null;
+        } catch (SQLException e) {
+            throw new ServletException(e);
+        }
+    }
+
 }
