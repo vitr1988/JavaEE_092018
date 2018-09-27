@@ -3,6 +3,7 @@
              xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_2.xsd" version="2.2">
     <persistence-unit name="test-jpa" transaction-type="RESOURCE_LOCAL">
         <class>ru.otus.db.entity.EmpEntity</class>
+        <class>ru.otus.db.entity.DeptEntity</class>
         <properties>
             <property name="hibernate.dialect" value="org.hibernate.dialect.H2Dialect"/>
             <property name="hibernate.connection.url" value="jdbc:h2:mem:test"/>

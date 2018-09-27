@@ -29,18 +29,16 @@ public class JDBCServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try (Connection conn = ds.getConnection();
              PreparedStatement ps = conn.prepareStatement("select * from emp");
-             ResultSet resultSet = ps.executeQuery();
-             PrintWriter pw = response.getWriter()){
+             ResultSet resultSet = ps.executeQuery()){
             StringBuilder sb = new StringBuilder();
             while(resultSet.next()){
                 sb.append(
                         Stream.of(
-                                resultSet.getString("ename"),
-                                resultSet.getString("job")
+                                resultSet.getString("ename") + " " + resultSet.getString("job")
                         ).collect(Collectors.joining("|"))
                 );
             }
-            pw.println(sb.toString());
+            response.getWriter().println(sb.toString());
         } catch (SQLException e) {
             throw new ServletException(e);
         }
