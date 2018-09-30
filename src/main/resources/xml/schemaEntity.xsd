@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <xs:element name="department" type="deptEntity"/>
+
+  <xs:element name="employee" type="empEntity"/>
+
+  <xs:complexType name="deptEntity">
+    <xs:sequence>
+      <xs:element name="name" type="xs:string"/>
+      <xs:element name="loc" type="xs:string"/>
+    </xs:sequence>
+    <xs:attribute name="deptno" type="xs:long" use="required"/>
+  </xs:complexType>
+
+  <xs:complexType name="empEntity">
+    <xs:sequence>
+      <xs:element name="ename" type="xs:string"/>
+      <xs:element name="job" type="xs:string"/>
+      <xs:element name="mgr" type="xs:long" minOccurs="0"/>
+      <xs:element name="department" type="deptEntity" minOccurs="0"/>
+    </xs:sequence>
+    <xs:attribute name="empno" type="xs:long" use="required"/>
+    <xs:attribute name="sal" type="xs:long"/>
+  </xs:complexType>
+</xs:schema>
+

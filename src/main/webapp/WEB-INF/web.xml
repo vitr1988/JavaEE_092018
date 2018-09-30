@@ -5,6 +5,11 @@
          version="3.1">
   <display-name>Archetype Created Web Application</display-name>
 
+  <context-param>
+    <param-name>testDataFileLocation</param-name>
+    <param-value>file:///D:/Project/Otus/JavaEE_092018/src/main/resources/xml/data.xml</param-value>
+  </context-param>
+
   <resource-ref>
     <description>DB Connection</description>
     <res-ref-name>jdbc/OracleDS</res-ref-name>

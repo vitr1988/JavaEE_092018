@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<employee empno="1" sal="5000">
+    <ename>Vitalii Ivanov</ename>
+    <job>BOSS</job>
+    <mgr>1</mgr>
+    <department deptno="1">
+        <name>Accountant</name>
+        <loc>Moscow</loc>
+    </department>
+</employee>
