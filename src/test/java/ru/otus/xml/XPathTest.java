@@ -17,6 +17,8 @@ import javax.xml.xpath.XPathFactory;
 import java.io.IOException;
 import java.util.List;
 
+import static ru.otus.xml.DOMUtil.getDocument;
+
 public class XPathTest {
 
     private static final String BASIC_XML = "/xml/data.xml";
@@ -25,16 +27,16 @@ public class XPathTest {
 
     @Before
     public void setUp() throws ParserConfigurationException, SAXException, IOException {
-        doc = DOMUtil.getDocument(BASIC_XML);
+        doc = getDocument(XPathTest.class.getResourceAsStream(BASIC_XML));
     }
 
     @Test
     public void testXPath(){
-        String expression = "/employee/department";
+        String expression = "/employee/department/name/text()";
         try {
             javax.xml.xpath.XPath xPath = XPathFactory.newInstance().newXPath();
-            NodeList nodeList = (NodeList) xPath.compile(expression).evaluate(doc, XPathConstants.NODESET);
-            Assert.assertEquals(1, nodeList.getLength());
+            String nodeList = (String) xPath.compile(expression).evaluate(doc, XPathConstants.STRING);
+            Assert.assertEquals("Accountant", nodeList);
         } catch (XPathExpressionException e) {
             e.printStackTrace();
         }

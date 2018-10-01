@@ -24,13 +24,13 @@ public class JAXBServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         DeptEntity department = new DeptEntity();
-        department.setDeptno(1L);
+        department.setDeptno(100L);
         department.setDname("Accountant");
         department.setLoc("Moscow");
 
         EmpEntity employee = new EmpEntity();
         employee.setEmpno(1L);
-        employee.setEname("Vitalii Ivanov");
+        employee.setEname("Ivanov Vitalii Andreevich");
         employee.setMgr(1L);
         employee.setSal(5000L);
         employee.setComm(200L);
