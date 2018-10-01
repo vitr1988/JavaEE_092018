@@ -15,8 +15,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.transform.stream.StreamSource;
-import java.io.FileReader;
+import javax.xml.transform.TransformerException;
 import java.io.IOException;
 
 @WebServlet("/dom")
@@ -83,5 +82,23 @@ public class DOMServlet extends HttpServlet {
         } catch (ParserConfigurationException | SAXException e) {
             new ServletException(e);
         }
+    }
+
+    @Override
+    protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        try {
+            final String xmlLocation = getServletContext().getRealPath("/WEB-INF/classes/xml/data.xml");
+            Document document = DOMUtil.getDocument(xmlLocation);
+            final Element documentElement = document.getDocumentElement();
+            if (documentElement.getTagName().equalsIgnoreCase("employee")) {
+                final String empnoStr = documentElement.getAttribute("empno");
+                documentElement.setAttribute("empno", Long.toString(!DOMUtil.isEmpty(empnoStr) ?  Long.decode(empnoStr) + 1 : 1));
+                DOMUtil.saveDocument(document, xmlLocation);
+                resp.getWriter().println("Increment has been successfully done");
+            }
+        } catch (ParserConfigurationException | SAXException | TransformerException e) {
+            new ServletException(e);
+        }
+
     }
 }
