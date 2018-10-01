@@ -3,7 +3,6 @@ package ru.otus.xml;
 import org.jaxen.JaxenException;
 import org.jaxen.XPath;
 import org.jaxen.dom.DOMXPath;
-import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -11,7 +10,6 @@ import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
-import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.xpath.XPathConstants;
 import javax.xml.xpath.XPathExpressionException;
@@ -24,13 +22,10 @@ public class XPathTest {
     private static final String BASIC_XML = "/xml/data.xml";
 
     private Document doc;
-    private DocumentBuilderFactory factory;
 
     @Before
     public void setUp() throws ParserConfigurationException, SAXException, IOException {
-        factory = DocumentBuilderFactory.newInstance();
-        factory.setNamespaceAware(true);
-        doc = factory.newDocumentBuilder().parse(XPathTest.class.getResourceAsStream(BASIC_XML));
+        doc = DOMUtil.getDocument(BASIC_XML);
     }
 
     @Test
