@@ -24,6 +24,8 @@
     <jaxen.version>1.1.6</jaxen.version>
     <log4j.version>2.9.1</log4j.version>
     <slf4j.version>1.7.21</slf4j.version>
+    <javax.json.version>1.1</javax.json.version>
+    <javax.jsonb.version>1.0</javax.jsonb.version>
     <jackson.version>2.9.7</jackson.version>
 
     <tomcat.deploymentPath>http://localhost:8080/manager/text</tomcat.deploymentPath>
@@ -103,6 +105,30 @@
       <artifactId>h2</artifactId>
       <version>${h2.version}</version>
       <scope>test</scope>
+    </dependency>
+
+    <!-- JSON-P 1.1 RI -->
+    <dependency>
+      <groupId>javax.json</groupId>
+      <artifactId>javax.json-api</artifactId>
+      <version>${javax.json.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.glassfish</groupId>
+      <artifactId>javax.json</artifactId>
+      <version>${javax.json.version}</version>
+    </dependency>
+
+    <!-- JSON-B 1.0 API -->
+    <dependency>
+      <groupId>javax.json.bind</groupId>
+      <artifactId>javax.json.bind-api</artifactId>
+      <version>${javax.jsonb.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.eclipse</groupId>
+      <artifactId>yasson</artifactId>
+      <version>${javax.jsonb.version}</version>
     </dependency>
 
     <dependency>

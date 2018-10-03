@@ -6,6 +6,6 @@ import lombok.Data;
 public class User {
 
     private String login;
-    private char[] password;
+    private String password;
 
 }
