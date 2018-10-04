@@ -1,7 +1,8 @@
 package ru.otus.json.demo;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
+import org.apache.log4j.Logger;
+import org.json.XML;
+import ru.otus.json.util.Util;
 import ru.otus.xml.model.DeptEntity;
 import ru.otus.xml.model.EmpEntity;
 
@@ -14,13 +15,13 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Date;
 
-@WebServlet("/gson")
-public class GSONServlet extends HttpServlet {
+@WebServlet("/xml2json")
+public class XML2JSONServlet extends HttpServlet {
 
-    private static final Gson JSON = new GsonBuilder().setPrettyPrinting().create();
+    private static final Logger logger = Logger.getLogger(XML2JSONServlet.class.getName());
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         DeptEntity department = new DeptEntity();
         department.setDeptno(100L);
         department.setDname("Accountant");
@@ -36,12 +37,12 @@ public class GSONServlet extends HttpServlet {
         employee.setJob("BOSS");
         employee.setDeptNo(department);
 
-        response.setHeader("Content-type", "application/json");
-        try (PrintWriter pw = response.getWriter()) {
-            String json = JSON.toJson(employee);
-            pw.println(json);
-            System.out.println(json);
-        }
+        String xmlString = Util.marshal(employee);
+        logger.info("XML content : " + xmlString);
 
+        resp.setHeader("Content-type", "application/json");
+        try(PrintWriter pw = resp.getWriter()){
+            pw.println(XML.toJSONObject(xmlString));
+        }
     }
 }

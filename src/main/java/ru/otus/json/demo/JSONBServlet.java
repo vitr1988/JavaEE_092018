@@ -31,6 +31,7 @@ public class JSONBServlet extends HttpServlet {
         user.setPassword(String.valueOf(new char[]{'t', 'e', 's', 't'}));
         String result = JsonbBuilder.create().toJson(user);
         // Serialize back
+        response.setHeader("Content-type", "application/json");
         try(PrintWriter pw = response.getWriter()){
             pw.println(result);
         }

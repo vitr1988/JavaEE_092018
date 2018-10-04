@@ -22,6 +22,7 @@ public class JSONServlet extends HttpServlet {
         ObjectMapper mapper = new ObjectMapper();
         String result = mapper.writeValueAsString(user);
         // Serialize back
+        response.setHeader("Content-type", "application/json");
         try(PrintWriter pw = response.getWriter()){
             pw.println(result);
         }
