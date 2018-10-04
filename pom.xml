@@ -27,6 +27,7 @@
     <javax.json.version>1.1</javax.json.version>
     <javax.jsonb.version>1.0</javax.jsonb.version>
     <jackson.version>2.9.7</jackson.version>
+    <gson.version>2.8.5</gson.version>
 
     <tomcat.deploymentPath>http://localhost:8080/manager/text</tomcat.deploymentPath>
     <glassfish.location>C:/JavaEE/glassfish5</glassfish.location>
@@ -143,7 +144,15 @@
       <artifactId>jackson-databind</artifactId>
       <version>${jackson.version}</version>
     </dependency>
+
+      <!-- GSON -->
+    <dependency>
+      <groupId>com.google.code.gson</groupId>
+      <artifactId>gson</artifactId>
+      <version>${gson.version}</version>
+    </dependency>
   </dependencies>
+
 
   <!-- Oracle Maven Repository -->
   <!--<repositories>
