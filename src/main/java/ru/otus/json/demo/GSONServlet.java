@@ -2,6 +2,7 @@ package ru.otus.json.demo;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import org.apache.log4j.Logger;
 import ru.otus.xml.model.DeptEntity;
 import ru.otus.xml.model.EmpEntity;
 
@@ -16,6 +17,8 @@ import java.util.Date;
 
 @WebServlet("/gson")
 public class GSONServlet extends HttpServlet {
+
+    private static final Logger logger = Logger.getLogger(GSONServlet.class.getName());
 
     private static final Gson JSON = new GsonBuilder().setPrettyPrinting().create();
 
@@ -39,6 +42,8 @@ public class GSONServlet extends HttpServlet {
         response.setHeader("Content-type", "application/json");
         try (PrintWriter pw = response.getWriter()) {
             String json = JSON.toJson(employee);
+            EmpEntity emp = JSON.fromJson(json, EmpEntity.class);
+            logger.info("JSON string converted to object : " + emp);
             pw.println(json);
             System.out.println(json);
         }

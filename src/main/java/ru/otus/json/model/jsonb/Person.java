@@ -20,7 +20,7 @@ public class Person {
     private String email;
     @JsonbTransient
     private int age;
-    @JsonbDateFormat("dd-MM-yyyy")
+    @JsonbDateFormat("dd.MM.yyyy")
     private LocalDate registeredDate;
     private BigDecimal salary;
 

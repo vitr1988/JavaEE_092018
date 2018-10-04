@@ -1,7 +1,7 @@
 
 # Details of a user
 ---
-name: Test User
+name: Test UserYaml
 age: 30
 address:
   line1: My Address Line 1
@@ -9,5 +9,5 @@ address:
   city: Washington D.C.
   zip: 20000
 roles:
-  - User
+  - UserYaml
   - Editor
