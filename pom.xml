@@ -31,6 +31,7 @@
     <org.json.version>20180813</org.json.version>
     <jsonschema.version>1.3.0</jsonschema.version>
     <jsonpath.version>2.3.0</jsonpath.version>
+    <jsoup.version>1.11.3</jsoup.version>
 
     <tomcat.deploymentPath>http://localhost:8080/manager/text</tomcat.deploymentPath>
     <glassfish.location>C:/JavaEE/glassfish5</glassfish.location>
@@ -177,6 +178,12 @@
       <version>${jsonpath.version}</version>
       <scope>test</scope>
     </dependency>
+
+    <dependency>
+      <groupId>org.jsoup</groupId>
+      <artifactId>jsoup</artifactId>
+      <version>${jsoup.version}</version>
+    </dependency>
   </dependencies>
 
 
@@ -270,6 +277,38 @@
             </properties>
           </configuration>
         </configuration>
+      </plugin>
+
+      <!--Minify Maven Plugin-->
+      <plugin>
+        <groupId>com.samaxes.maven</groupId>
+        <artifactId>minify-maven-plugin</artifactId>
+        <version>1.7.6</version>
+        <executions>
+          <execution>
+            <id>default-minify</id>
+            <phase>package</phase><!-- When omitted defaults to 'process-resources' -->
+            <configuration>
+              <charset>UTF-8</charset>
+              <!-- CSS minimization -->
+              <cssSourceDir>css</cssSourceDir>
+              <cssSourceFiles>
+                <cssSourceFile>style.css</cssSourceFile>
+              </cssSourceFiles>
+              <cssFinalFile>style-all.css</cssFinalFile>
+              <!-- JS minimization -->
+              <jsSourceDir>js</jsSourceDir>
+              <jsSourceFiles>
+                <jsSourceFile>xhr.js</jsSourceFile>
+              </jsSourceFiles>
+              <jsFinalFile>script-min.js</jsFinalFile>
+              <jsEngine>CLOSURE</jsEngine>
+            </configuration>
+            <goals>
+              <goal>minify</goal>
+            </goals>
+          </execution>
+        </executions>
       </plugin>
     </plugins>
   </build>

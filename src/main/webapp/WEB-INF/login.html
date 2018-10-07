@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Authorization</title>
+    <link type="text/css" rel="stylesheet" href="/JavaEE/css/style-all.min.css">
+</head>
+<body>
+    <form method="post" action="j_security_check" class="loginForm">
+        <div>
+            <label for="login">Login:</label>
+            <input type="text" id="login" name="j_username" autocomplete="off" placeholder="Type your login"/>
+        </div>
+        <div>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="j_password" autocomplete="off" placeholder="Type your password"/>
+        </div>
+        <div class="submitArea">
+            <input type="submit" id="submit" value="Logon"/>
+        </div>
+    </form>
+    <script>
+        var checkLoginForm = function() {
+            var checked = document.getElementById('login').value != ''
+                && document.getElementById('password').value != '';
+            if (checked) {
+                document.getElementById('submit').removeAttribute('disabled');
+            }
+            else {
+                document.getElementById('submit').setAttribute('disabled', 'disabled')
+            }
+        };
+
+        checkLoginForm();
+
+        var focusListener = function(event) {
+            event.target.style.background = "#528394";
+        };
+        var blurListener = function(event) {
+            event.target.style.background = "";
+            checkLoginForm();
+        };
+        var inputElement = document.getElementById('login');
+        inputElement.addEventListener("focus", focusListener, true);
+        inputElement.addEventListener("blur", blurListener, true);
+
+        inputElement = document.getElementById('password');
+        inputElement.addEventListener("focus", focusListener, true);
+        inputElement.addEventListener("blur", blurListener, true);
+    </script>
+</body>
+</html>
