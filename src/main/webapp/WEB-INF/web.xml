@@ -10,6 +10,15 @@
     <param-value>file:///D:/Project/Otus/JavaEE_092018/src/main/resources/xml/data.xml</param-value>
   </context-param>
 
+  <servlet>
+      <servlet-name>ApplicationService</servlet-name>
+      <servlet-class>ru.otus.gwt.server.ApplicationServiceImpl</servlet-class>
+  </servlet>
+  <servlet-mapping>
+      <servlet-name>ApplicationService</servlet-name>
+      <url-pattern>/Application/ApplicationService</url-pattern>
+  </servlet-mapping>
+
   <resource-ref>
     <description>DB Connection</description>
     <res-ref-name>jdbc/OracleDS</res-ref-name>
