@@ -4,6 +4,17 @@
 
     <!-- Inherit the core Web Toolkit stuff.                  -->
     <inherits name='com.google.gwt.user.User'/>
+    <inherits name="com.google.gwt.user.theme.clean.Clean" />
+    <inherits name="org.hibernate.validator.HibernateValidator" />
+
+    <replace-with class="ru.otus.gwt.client.validation.ValidatorFactory">
+        <when-type-is class="javax.validation.ValidatorFactory" />
+    </replace-with>
+    <!--i18n-->
+    <inherits name="com.google.gwt.i18n.I18N"/>
+    <extend-property name="locale" values="en"/>
+    <extend-property name="locale" values="ru"/>
+    <set-property-fallback name="locale" value="ru"/>
 
     <!-- Specify the app entry point class.                   -->
     <entry-point class='ru.otus.gwt.client.Application'/>
@@ -11,5 +22,9 @@
 
     <!-- Specify the app servlets.                   -->
     <servlet path='/ApplicationService' class='ru.otus.gwt.server.ApplicationServiceImpl'/>
+
+    <!-- Specify the paths for translatable code-->
+    <source path='client'/>
+    <source path='shared'/>
 
 </module>

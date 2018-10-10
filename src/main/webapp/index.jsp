@@ -7,6 +7,7 @@
 </form>
 
 <a href="html/page.html">Go to web-page</a>
+<a href="Application.html">Go to GWT</a>
 
 </body>
 </html>

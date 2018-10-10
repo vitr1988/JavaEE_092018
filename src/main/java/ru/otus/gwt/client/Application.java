@@ -1,55 +1,115 @@
 package ru.otus.gwt.client;
 
 import com.google.gwt.core.client.EntryPoint;
-import com.google.gwt.user.client.ui.*;
+import com.google.gwt.core.client.GWT;
+import com.google.gwt.dom.client.Document;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
-import com.google.gwt.event.dom.client.ClickHandler;
-import com.google.gwt.event.dom.client.ClickEvent;
+import com.google.gwt.user.client.ui.*;
+import ru.otus.gwt.client.text.ApplicationConstants;
+import ru.otus.gwt.client.widget.MainView;
+import ru.otus.gwt.shared.User;
+import ru.otus.gwt.shared.exception.WrongCredentialException;
+import ru.otus.gwt.shared.validation.ValidationRule;
+
+import javax.validation.ConstraintViolationException;
 
 /**
  * Entry point classes define <code>onModuleLoad()</code>
  */
 public class Application implements EntryPoint {
 
+    private static ApplicationServiceAsync service = GWT.create(ApplicationService.class);
+    private static ApplicationConstants dictionary = GWT.create(ApplicationConstants.class);
+
+    public static final String LABEL_CLASS_NAME = "firstColumnWidth";
+    public static final String INPUT_CLASS_NAME = "inputWidth";
+
+    private TextBox loginTextBox;
+    private PasswordTextBox passwordTextBox;
+
     /**
      * This is the entry point method.
      */
     public void onModuleLoad() {
-        final Button button = new Button("Click me");
-        final Label label = new Label();
+        initHeaderAndTitle();
 
-        button.addClickHandler(new ClickHandler() {
-            public void onClick(ClickEvent event) {
-                if (label.getText().equals("")) {
-                    ApplicationService.App.getInstance().getMessage("Hello, World!", new MyAsyncCallback(label));
-                } else {
-                    label.setText("");
-                }
+        Panel loginPanel = initAndGetLoginPanel();
+        Panel passwordPanel = initAndGetPasswordPanel();
+        final Button button = new Button(dictionary.logon_button_alt());
+        Panel buttonPanel = initAndGetSubmitPanel(button);
+
+        VerticalPanel mainPanel = new VerticalPanel();
+        mainPanel.add(loginPanel);
+        mainPanel.add(passwordPanel);
+        mainPanel.add(buttonPanel);
+        mainPanel.setCellHorizontalAlignment(buttonPanel, HasHorizontalAlignment.ALIGN_CENTER);
+
+        button.addClickHandler((event) -> {
+            User user = new User(getLogin(), getPassword());
+            if (ValidationRule.isValid(user)) {
+                service.authorize(user, new AsyncCallback<Void>() {
+                    @Override
+                    public void onFailure(Throwable caught) {
+                        if (caught instanceof WrongCredentialException) {
+                            Window.alert(caught.getLocalizedMessage());
+                        }
+                        else if (caught instanceof ConstraintViolationException) {
+                            Window.alert(caught.getLocalizedMessage());
+                        }
+                    }
+                    @Override
+                    public void onSuccess(Void result) {
+                        Window.alert("Вход успешен!");
+                    }
+                });
             }
         });
 
-        // Assume that the host HTML has elements defined whose
-        // IDs are "slot1", "slot2".  In a real app, you probably would not want
-        // to hard-code IDs.  Instead, you could, for example, search for all
-        // elements with a particular CSS class and replace them with widgets.
-        //
-        RootPanel.get("slot1").add(button);
-        RootPanel.get("slot2").add(label);
+        RootPanel.get("slot").add(mainPanel);
+
+//        RootPanel.get("slot").add(new MainView(service));
     }
 
-    private static class MyAsyncCallback implements AsyncCallback<String> {
-        private Label label;
+    private Panel initAndGetPasswordPanel() {
+        HorizontalPanel passwordPanel = new HorizontalPanel();
+        Label passwordLabel = new Label(dictionary.password_label_alt());
+        passwordPanel.add(passwordLabel);
+        passwordLabel.addStyleName(LABEL_CLASS_NAME);
+        passwordTextBox = new PasswordTextBox();
+        passwordPanel.add(passwordTextBox);
+        passwordTextBox.addStyleName(INPUT_CLASS_NAME);
+        return passwordPanel;
+    }
 
-        public MyAsyncCallback(Label label) {
-            this.label = label;
-        }
+    private Panel initAndGetLoginPanel() {
+        HorizontalPanel loginPanel = new HorizontalPanel();
+        Label loginLabel = new Label(dictionary.login_label_alt());
+        loginPanel.add(loginLabel);
+        loginLabel.addStyleName(LABEL_CLASS_NAME);
+        loginTextBox = new TextBox();
+        loginPanel.add(loginTextBox);
+        loginTextBox.addStyleName(INPUT_CLASS_NAME);
+        loginTextBox.getElement().setAttribute("placeholder", dictionary.login_placeholder_alt());
+        return loginPanel;
+    }
 
-        public void onSuccess(String result) {
-            label.getElement().setInnerHTML(result);
-        }
+    public String getLogin() {
+        return loginTextBox.getText();
+    }
 
-        public void onFailure(Throwable throwable) {
-            label.setText("Failed to receive answer from server!");
-        }
+    public String getPassword() {
+        return passwordTextBox.getText();
+    }
+
+    private Panel initAndGetSubmitPanel(Button submit) {
+        HorizontalPanel buttonPanel = new HorizontalPanel();
+        buttonPanel.add(submit);
+        return buttonPanel;
+    }
+
+    private void initHeaderAndTitle(){
+        Document.get().getElementById("header").setInnerText(dictionary.form_header());
+        Document.get().getElementById("title").setInnerText(dictionary.title());
     }
 }
