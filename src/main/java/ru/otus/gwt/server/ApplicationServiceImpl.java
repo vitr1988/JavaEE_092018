@@ -1,12 +1,12 @@
 package ru.otus.gwt.server;
 
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
-import ru.otus.gwt.client.ApplicationService;
+import ru.otus.gwt.client.service.ApplicationService;
 import ru.otus.gwt.shared.User;
 import ru.otus.gwt.shared.exception.WrongCredentialException;
+import ru.otus.gwt.shared.validation.ValidationRule;
 
-import javax.servlet.annotation.WebServlet;
-import java.util.Objects;
+import javax.servlet.ServletException;
 
 public class ApplicationServiceImpl extends RemoteServiceServlet implements ApplicationService {
     // Implementation of sample interface method
@@ -16,8 +16,12 @@ public class ApplicationServiceImpl extends RemoteServiceServlet implements Appl
 
     @Override
     public void authorize(User user) throws WrongCredentialException {
-        if (!Objects.equals(user.getLogin(), user.getPassword())) {
-            throw new WrongCredentialException("Некорректные логин/пароль");
+        if (ValidationRule.isValid(user)){
+            try {
+                getThreadLocalRequest().login(user.getLogin(), user.getPassword());
+            } catch (ServletException e) {
+                throw new WrongCredentialException("Некорректные логин/пароль");
+            }
         }
     }
 }

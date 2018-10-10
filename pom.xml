@@ -34,6 +34,7 @@
     <jsoup.version>1.11.3</jsoup.version>
     <httpclient.version>4.5.6</httpclient.version>
     <gwt.version>2.8.2</gwt.version>
+    <gin.version>2.1.2</gin.version>
     <hibernate-validator.version>4.1.0.Final</hibernate-validator.version>
 
     <tomcat.deploymentPath>http://localhost:8080/manager/text</tomcat.deploymentPath>
@@ -224,6 +225,14 @@
       <artifactId>gwt-servlet</artifactId>
       <scope>runtime</scope>
     </dependency>
+
+    <!-- Gin -->
+    <dependency>
+      <groupId>com.google.gwt.inject</groupId>
+      <artifactId>gin</artifactId>
+      <version>${gin.version}</version>
+    </dependency>
+
 
     <!-- Hibernate bean validation binary for the server -->
     <dependency>

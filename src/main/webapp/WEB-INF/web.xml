@@ -47,5 +47,4 @@
        <form-error-page>/WEB-INF/loginError.html</form-error-page>
      </form-login-config>
   </login-config>
-
 </web-app>

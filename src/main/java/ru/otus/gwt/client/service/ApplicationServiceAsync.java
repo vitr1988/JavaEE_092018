@@ -1,4 +1,4 @@
-package ru.otus.gwt.client;
+package ru.otus.gwt.client.service;
 
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import ru.otus.gwt.shared.User;

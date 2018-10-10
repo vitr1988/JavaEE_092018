@@ -12,6 +12,9 @@
     </replace-with>
     <!--i18n-->
     <inherits name="com.google.gwt.i18n.I18N"/>
+    <!--gin-->
+    <inherits name="com.google.gwt.inject.Inject"/>
+
     <extend-property name="locale" values="en"/>
     <extend-property name="locale" values="ru"/>
     <set-property-fallback name="locale" value="ru"/>

@@ -9,7 +9,7 @@ import com.google.gwt.uibinder.client.UiTemplate;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.*;
-import ru.otus.gwt.client.ApplicationServiceAsync;
+import ru.otus.gwt.client.service.ApplicationServiceAsync;
 import ru.otus.gwt.shared.User;
 import ru.otus.gwt.shared.exception.WrongCredentialException;
 import ru.otus.gwt.shared.validation.ValidationRule;
