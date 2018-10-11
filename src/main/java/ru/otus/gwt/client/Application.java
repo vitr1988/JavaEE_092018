@@ -1,27 +1,24 @@
 package ru.otus.gwt.client;
 
 import com.google.gwt.core.client.EntryPoint;
-import com.google.gwt.core.client.GWT;
 import com.google.gwt.dom.client.Document;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.*;
-import ru.otus.gwt.client.gin.ApplicationInjector;
 import ru.otus.gwt.client.service.ApplicationServiceAsync;
 import ru.otus.gwt.client.text.ApplicationConstants;
-import ru.otus.gwt.client.widget.MainView;
 import ru.otus.gwt.shared.User;
 import ru.otus.gwt.shared.exception.WrongCredentialException;
 import ru.otus.gwt.shared.validation.ValidationRule;
 
 import javax.validation.ConstraintViolationException;
 
+import static ru.otus.gwt.client.gin.ApplicationInjector.INSTANCE;
+
 /**
  * Entry point classes define <code>onModuleLoad()</code>
  */
 public class Application implements EntryPoint {
-
-    private static final ApplicationInjector INSTANCE = GWT.create(ApplicationInjector.class);
 
     private static ApplicationServiceAsync service = INSTANCE.getService();
     private static ApplicationConstants dictionary = INSTANCE.getConstants();
@@ -114,7 +111,6 @@ public class Application implements EntryPoint {
                 });
             }
         });
-
         RootPanel.get("slot").add(mainPanel);
 //        RootPanel.get("slot").add(new MainView(service));
     }

@@ -5,18 +5,21 @@
         .redButton {
             font-size: 10px;
         }
+        .marginTop5px {
+            margin-top: 5px;
+        }
     </ui:style>
     <g:VerticalPanel>
-        <g:HorizontalPanel>
-            <g:Label text="{res.login_label_alt}"></g:Label>
-            <g:TextBox ui:field="loginTextField"></g:TextBox>
+        <g:HorizontalPanel addStyleNames="{style.marginTop5px}">
+            <g:Label text="{res.login_label_alt}" addStyleNames="firstColumnWidth"></g:Label>
+            <g:TextBox ui:field="loginTextField" addStyleNames="inputWidth"></g:TextBox>
         </g:HorizontalPanel>
-        <g:HorizontalPanel>
-            <g:Label text="{res.password_label_alt}"></g:Label>
-            <g:PasswordTextBox ui:field="passwordTextField"></g:PasswordTextBox>
+        <g:HorizontalPanel addStyleNames="{style.marginTop5px}">
+            <g:Label text="{res.password_label_alt}" addStyleNames="firstColumnWidth"></g:Label>
+            <g:PasswordTextBox ui:field="passwordTextField" addStyleNames="inputWidth"></g:PasswordTextBox>
         </g:HorizontalPanel>
-        <g:HorizontalPanel>
-            <g:Button text="{res.logon_button_alt}" ui:field="submit" addStyleNames="{style.redButton}"></g:Button>
+        <g:HorizontalPanel addStyleNames="{style.marginTop5px}" horizontalAlignment="ALIGN_CENTER" width="100%">
+            <g:Button text="{res.logon_button_alt}" ui:field="submit" addStyleNames="{style.redButton} submitArea"></g:Button>
         </g:HorizontalPanel>
     </g:VerticalPanel>
 </ui:UiBinder>

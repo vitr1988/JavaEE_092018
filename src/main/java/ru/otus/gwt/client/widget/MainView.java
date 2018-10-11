@@ -1,6 +1,5 @@
 package ru.otus.gwt.client.widget;
 
-import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.uibinder.client.UiBinder;
@@ -14,9 +13,13 @@ import ru.otus.gwt.shared.User;
 import ru.otus.gwt.shared.exception.WrongCredentialException;
 import ru.otus.gwt.shared.validation.ValidationRule;
 
+import javax.inject.Inject;
+
+import static ru.otus.gwt.client.gin.ApplicationInjector.INSTANCE;
+
 public class MainView extends Composite {
     @UiTemplate("MainPart.ui.xml")
-    interface MainViewUiBinder extends UiBinder<VerticalPanel, MainView> {
+    public interface MainViewUiBinder extends UiBinder<VerticalPanel, MainView> {
     }
 
     @UiField
@@ -28,8 +31,9 @@ public class MainView extends Composite {
     @UiField
     Button submit;
 
-    private static MainViewUiBinder ourUiBinder = GWT.create(MainViewUiBinder.class);
+    private static MainViewUiBinder ourUiBinder = INSTANCE.getUiBinder();
 
+    @Inject
     public MainView(ApplicationServiceAsync service) {
         initWidget(ourUiBinder.createAndBindUi(this));
 

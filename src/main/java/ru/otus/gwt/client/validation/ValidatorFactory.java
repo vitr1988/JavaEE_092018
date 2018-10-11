@@ -1,12 +1,13 @@
 package ru.otus.gwt.client.validation;
 
-import com.google.gwt.core.client.GWT;
 import com.google.gwt.validation.client.AbstractGwtValidatorFactory;
 import com.google.gwt.validation.client.GwtValidation;
 import com.google.gwt.validation.client.impl.AbstractGwtValidator;
 import ru.otus.gwt.shared.User;
 
 import javax.validation.Validator;
+
+import static ru.otus.gwt.client.gin.ApplicationInjector.INSTANCE;
 
 public class ValidatorFactory extends AbstractGwtValidatorFactory {
 
@@ -20,6 +21,6 @@ public class ValidatorFactory extends AbstractGwtValidatorFactory {
 
     @Override
     public AbstractGwtValidator createValidator() {
-        return GWT.create(GwtValidator.class);
+        return (AbstractGwtValidator) INSTANCE.getValidator();
     }
 }
