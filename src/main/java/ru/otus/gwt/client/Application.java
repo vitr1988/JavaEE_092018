@@ -8,6 +8,7 @@ import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.*;
 import ru.otus.gwt.client.service.ApplicationServiceAsync;
 import ru.otus.gwt.client.text.ApplicationConstants;
+import ru.otus.gwt.client.widget.MainView;
 import ru.otus.gwt.shared.User;
 import ru.otus.gwt.shared.exception.WrongCredentialException;
 import ru.otus.gwt.shared.validation.ValidationRule;
@@ -54,6 +55,7 @@ public class Application implements EntryPoint {
     private Panel initAndGetLoginPanel() {
         HorizontalPanel loginPanel = new HorizontalPanel();
         Label loginLabel = new Label(dictionary.login_label_alt());
+        loginLabel.getElement().getStyle().setFontStyle(Style.FontStyle.ITALIC);
         loginPanel.add(loginLabel);
         loginLabel.addStyleName(LABEL_CLASS_NAME);
         loginTextBox = new TextBox();
@@ -85,61 +87,52 @@ public class Application implements EntryPoint {
     private Image loginInvalidFieldImage, passwordInvalidFieldImage;
 
     private void initMainSlot(){
-        Panel loginPanel = initAndGetLoginPanel();
-        Panel passwordPanel = initAndGetPasswordPanel();
-        final Button button = new Button(dictionary.logon_button_alt());
-        Panel buttonPanel = initAndGetSubmitPanel(button);
-
-        VerticalPanel mainPanel = new VerticalPanel();
-        mainPanel.add(loginPanel);
-        mainPanel.add(passwordPanel);
-        mainPanel.add(buttonPanel);
-        mainPanel.setCellHorizontalAlignment(buttonPanel, HasHorizontalAlignment.ALIGN_CENTER);
-
-        button.addClickHandler((event) -> {
-            User user = new User(getLogin(), getPassword());
-            Set<ConstraintViolation<User>> errors = ValidationRule.getErrors(user);
-
-            loginTextBox.getElement().getStyle().clearBorderColor();
-            if (loginInvalidFieldImage != null){
-                loginInvalidFieldImage.removeFromParent();
-            }
-            passwordTextBox.getElement().getStyle().clearBorderColor();
-            if (passwordInvalidFieldImage != null){
-                passwordInvalidFieldImage.removeFromParent();
-            }
-
-            if (errors.isEmpty()) {
-                service.authorize(user, new AsyncCallback<Void>() {
-                    @Override
-                    public void onFailure(Throwable caught) {
-                        if (caught instanceof WrongCredentialException) {
-                            Window.alert(caught.getLocalizedMessage());
-                        }
-                        else if (caught instanceof ConstraintViolationException) {
-                            Window.alert(caught.getLocalizedMessage());
-                        }
-                    }
-                    @Override
-                    public void onSuccess(Void result) {
-                        Window.alert(INSTANCE.getConstants().logon_success());
-                    }
-                });
-            }
-            else {
-                errors.stream().forEach(e -> {
-                    String propertyName = e.getPropertyPath().toString();
-                    if (propertyName.equals(User.LOGIN)) {
-                        loginInvalidFieldImage = showError(loginTextBox, loginPanel, e.getMessage());
-                    }
-                    else if (propertyName.equals(User.PASSWORD)){
-                        passwordInvalidFieldImage = loginInvalidFieldImage = showError(passwordTextBox, passwordPanel, e.getMessage());
-                    }
-                });
-            }
-        });
-        RootPanel.get("slot").add(mainPanel);
-//        RootPanel.get("slot").add(new MainView(service));
+//        Panel loginPanel = initAndGetLoginPanel();
+//        Panel passwordPanel = initAndGetPasswordPanel();
+//        final Button button = new Button(dictionary.logon_button_alt());
+//        Panel buttonPanel = initAndGetSubmitPanel(button);
+//
+//        VerticalPanel mainPanel = new VerticalPanel();
+//        mainPanel.add(loginPanel);
+//        mainPanel.add(passwordPanel);
+//        mainPanel.add(buttonPanel);
+//        mainPanel.setCellHorizontalAlignment(buttonPanel, HasHorizontalAlignment.ALIGN_CENTER);
+//
+//        button.addClickHandler(event -> {
+//            User user = new User(getLogin(), getPassword());
+//            Set<ConstraintViolation<User>> errors = ValidationRule.getErrors(user);
+//            clearErrors();
+//            if (errors.isEmpty()) {
+//                service.authorize(user, new AsyncCallback<Void>() {
+//                    @Override
+//                    public void onFailure(Throwable caught) {
+//                        if (caught instanceof WrongCredentialException) {
+//                            Window.alert(caught.getLocalizedMessage());
+//                        }
+//                        else if (caught instanceof ConstraintViolationException) {
+//                            Window.alert(caught.getLocalizedMessage());
+//                        }
+//                    }
+//                    @Override
+//                    public void onSuccess(Void result) {
+//                        Window.alert(INSTANCE.getConstants().logon_success());
+//                    }
+//                });
+//            }
+//            else {
+//                errors.stream().forEach(e -> {
+//                    String propertyName = e.getPropertyPath().toString();
+//                    if (propertyName.equals(User.LOGIN)) {
+//                        loginInvalidFieldImage = showError(loginTextBox, loginPanel, e.getMessage());
+//                    }
+//                    else if (propertyName.equals(User.PASSWORD)){
+//                        passwordInvalidFieldImage = showError(passwordTextBox, passwordPanel, e.getMessage());
+//                    }
+//                });
+//            }
+//        });
+//        RootPanel.get("slot").add(mainPanel);
+        RootPanel.get("slot").add(new MainView(service));
     }
 
     public Image showError(TextBox textBox, Panel panel, String error) {
@@ -151,5 +144,16 @@ public class Application implements EntryPoint {
         fieldInvalidImage.setTitle(error);
         panel.add(fieldInvalidImage);
         return fieldInvalidImage;
+    }
+
+    public void clearErrors(){
+        loginTextBox.getElement().getStyle().clearBorderColor();
+        if (loginInvalidFieldImage != null){
+            loginInvalidFieldImage.removeFromParent();
+        }
+        passwordTextBox.getElement().getStyle().clearBorderColor();
+        if (passwordInvalidFieldImage != null){
+            passwordInvalidFieldImage.removeFromParent();
+        }
     }
 }

@@ -103,8 +103,7 @@
       <version>${log4j.version}</version>
     </dependency>
     <!-- Required by Hibernate validator because slf4j-log4j is
-         optional in the hibernate-validator POM
-     -->
+         optional in the hibernate-validator POM -->
     <dependency>
       <groupId>org.slf4j</groupId>
       <artifactId>slf4j-log4j12</artifactId>

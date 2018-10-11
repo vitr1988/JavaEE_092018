@@ -1,5 +1,6 @@
 <ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
-             xmlns:g='urn:import:com.google.gwt.user.client.ui'>
+             xmlns:g='urn:import:com.google.gwt.user.client.ui'
+             xmlns:elem='urn:import:com.google.gwt.dom.client'>
     <ui:with field='res' type='ru.otus.gwt.client.text.ApplicationConstants'/>
     <ui:style>
         .redButton {
@@ -10,11 +11,11 @@
         }
     </ui:style>
     <g:VerticalPanel>
-        <g:HorizontalPanel addStyleNames="{style.marginTop5px}">
+        <g:HorizontalPanel ui:field="loginPanel" addStyleNames="{style.marginTop5px}">
             <g:Label text="{res.login_label_alt}" addStyleNames="firstColumnWidth"></g:Label>
             <g:TextBox ui:field="loginTextField" addStyleNames="inputWidth"></g:TextBox>
         </g:HorizontalPanel>
-        <g:HorizontalPanel addStyleNames="{style.marginTop5px}">
+        <g:HorizontalPanel ui:field="passwordPanel" addStyleNames="{style.marginTop5px}">
             <g:Label text="{res.password_label_alt}" addStyleNames="firstColumnWidth"></g:Label>
             <g:PasswordTextBox ui:field="passwordTextField" addStyleNames="inputWidth"></g:PasswordTextBox>
         </g:HorizontalPanel>
