@@ -1,8 +1,7 @@
 <!DOCTYPE module PUBLIC "-//Google Inc.//DTD Google Web Toolkit 2.8.0//EN"
         "http://gwtproject.org/doctype/2.8.0/gwt-module.dtd">
 <module rename-to="Application">
-
-    <!-- Inherit the core Web Toolkit stuff.                  -->
+    <!-- Inherit the core Web Toolkit stuff -->
     <inherits name='com.google.gwt.user.User'/>
     <inherits name="com.google.gwt.user.theme.clean.Clean" />
     <inherits name="org.hibernate.validator.HibernateValidator" />
@@ -10,15 +9,6 @@
     <replace-with class="ru.otus.gwt.client.validation.ValidatorFactory">
         <when-type-is class="javax.validation.ValidatorFactory" />
     </replace-with>
-
-    <!-- logging settings -->
-    <inherits name="com.allen_sauer.gwt.log.gwt-log-OFF" />
-    <!-- Also compile Logger at `DEBUG` level -->
-    <extend-property name="log_level" values="TRACE" />
-    <set-property name="log_level" value="TRACE" />
-    <!-- Turn off the floating logger - output will be shown in the hosted mode console -->
-    <set-property name="log_DivLogger" value="DISABLED" />
-    <inherits name="com.allen_sauer.gwt.log.gwt-log-RemoteLogger" />
 
     <!--i18n-->
     <inherits name="com.google.gwt.i18n.I18N"/>
@@ -28,12 +18,9 @@
     <extend-property name="locale" values="en"/>
     <extend-property name="locale" values="ru"/>
     <set-property-fallback name="locale" value="ru"/>
-
-    <!-- Specify the app entry point class.                   -->
+    <!-- Specify the app entry point class.  -->
     <entry-point class='ru.otus.gwt.client.Application'/>
-
-
-    <!-- Specify the app servlets.                   -->
+    <!-- Specify the app servlets.           -->
     <servlet path='/ApplicationService' class='ru.otus.gwt.server.ApplicationServiceImpl'/>
 
     <!-- Specify the paths for translatable code-->

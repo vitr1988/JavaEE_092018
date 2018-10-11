@@ -17,11 +17,11 @@ import javax.validation.constraints.Size;
 @FieldNameConstants(prefix = "")
 public class User implements IsSerializable {
 
-    @NotEmpty
+    @NotNull
     @Size(min = 4, message = "Login must contain at least 4 characters.")
     private String login;
 
-    @NotEmpty
+    @NotNull
     @Size(min = 4, message = "Password must contain at least 4 characters.")
     private String password;
 }
