@@ -18,6 +18,14 @@
       <servlet-name>ApplicationService</servlet-name>
       <url-pattern>/Application/ApplicationService</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <servlet-name>remoteLoggerServiceImpl</servlet-name>
+    <servlet-class>com.allen_sauer.gwt.log.server.RemoteLoggerServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>remoteLoggerServiceImpl</servlet-name>
+    <url-pattern>/Application/gwt-log</url-pattern>
+  </servlet-mapping>
 
   <resource-ref>
     <description>DB Connection</description>

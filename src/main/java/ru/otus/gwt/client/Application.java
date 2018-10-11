@@ -2,6 +2,7 @@ package ru.otus.gwt.client;
 
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.dom.client.Document;
+import com.google.gwt.dom.client.Style;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.*;
@@ -11,7 +12,9 @@ import ru.otus.gwt.shared.User;
 import ru.otus.gwt.shared.exception.WrongCredentialException;
 import ru.otus.gwt.shared.validation.ValidationRule;
 
+import javax.validation.ConstraintViolation;
 import javax.validation.ConstraintViolationException;
+import java.util.Set;
 
 import static ru.otus.gwt.client.gin.ApplicationInjector.INSTANCE;
 
@@ -79,6 +82,8 @@ public class Application implements EntryPoint {
         Document.get().getElementById("title").setInnerText(dictionary.title());
     }
 
+    private Image loginInvalidFieldImage, passwordInvalidFieldImage;
+
     private void initMainSlot(){
         Panel loginPanel = initAndGetLoginPanel();
         Panel passwordPanel = initAndGetPasswordPanel();
@@ -93,7 +98,18 @@ public class Application implements EntryPoint {
 
         button.addClickHandler((event) -> {
             User user = new User(getLogin(), getPassword());
-            if (ValidationRule.isValid(user)) {
+            Set<ConstraintViolation<User>> errors = ValidationRule.getErrors(user);
+
+            loginTextBox.getElement().getStyle().clearBorderColor();
+            if (loginInvalidFieldImage != null){
+                loginInvalidFieldImage.removeFromParent();
+            }
+            passwordTextBox.getElement().getStyle().clearBorderColor();
+            if (passwordInvalidFieldImage != null){
+                passwordInvalidFieldImage.removeFromParent();
+            }
+
+            if (errors.isEmpty()) {
                 service.authorize(user, new AsyncCallback<Void>() {
                     @Override
                     public void onFailure(Throwable caught) {
@@ -106,12 +122,34 @@ public class Application implements EntryPoint {
                     }
                     @Override
                     public void onSuccess(Void result) {
-                        Window.alert("Вход успешен!");
+                        Window.alert(INSTANCE.getConstants().logon_success());
+                    }
+                });
+            }
+            else {
+                errors.stream().forEach(e -> {
+                    String propertyName = e.getPropertyPath().toString();
+                    if (propertyName.equals(User.LOGIN)) {
+                        loginInvalidFieldImage = showError(loginTextBox, loginPanel, e.getMessage());
+                    }
+                    else if (propertyName.equals(User.PASSWORD)){
+                        passwordInvalidFieldImage = loginInvalidFieldImage = showError(passwordTextBox, passwordPanel, e.getMessage());
                     }
                 });
             }
         });
         RootPanel.get("slot").add(mainPanel);
 //        RootPanel.get("slot").add(new MainView(service));
+    }
+
+    public Image showError(TextBox textBox, Panel panel, String error) {
+        textBox.getElement().getStyle().setBorderColor("red");
+        final Image fieldInvalidImage = new Image(INSTANCE.getImages().field_invalid());
+        Style style = fieldInvalidImage.getElement().getStyle();
+        style.setCursor(Style.Cursor.POINTER);
+        style.setMargin(6, Style.Unit.PX);
+        fieldInvalidImage.setTitle(error);
+        panel.add(fieldInvalidImage);
+        return fieldInvalidImage;
     }
 }

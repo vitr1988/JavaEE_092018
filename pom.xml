@@ -43,8 +43,12 @@
     <mavencompiler.version>3.5.1</mavencompiler.version>
     <mavenbuilder.version>3.0.0</mavenbuilder.version>
     <mavendeploy.version>2.2</mavendeploy.version>
+    <cargo.version>1.6.10</cargo.version>
     <maven.compiler.source>1.8</maven.compiler.source>
     <maven.compiler.target>1.8</maven.compiler.target>
+
+    <!-- https://huangp.wordpress.com/2012/05/09/lombok-for-java-and-gwt-project/ -->
+    <lombok.lib>${org.projectlombok:lombok:jar}</lombok.lib>
   </properties>
 
   <dependencyManagement>
@@ -65,6 +69,7 @@
       <groupId>org.projectlombok</groupId>
       <artifactId>lombok</artifactId>
       <version>${lombok.version}</version>
+      <scope>provided</scope>
     </dependency>
 
     <dependency>
@@ -353,6 +358,7 @@
       <plugin>
         <groupId>org.codehaus.cargo</groupId>
         <artifactId>cargo-maven2-plugin</artifactId>
+        <version>${cargo.version}</version>
         <configuration>
           <container>
             <containerId>glassfish5x</containerId>
@@ -409,6 +415,18 @@
         </executions>
       </plugin>
 
+      <plugin>
+        <artifactId>maven-dependency-plugin</artifactId>
+        <executions>
+          <execution>
+            <phase>initialize</phase>
+            <goals>
+              <goal>properties</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+
       <!--GWT Plugin-->
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
@@ -424,7 +442,7 @@
         <configuration>
           <module>ru.otus.gwt.Application</module>
           <extraJvmArgs>
-            -Xss1024K -Xmx1024M -Duser.language=ru -Duser.country=RU -Djavax.xml.parsers.DocumentBuilderFactory=com.sun.org.apache.xerces.internal.jaxp.DocumentBuilderFactoryImpl -Djavax.xml.parsers.SAXParserFactory=com.sun.org.apache.xerces.internal.jaxp.SAXParserFactoryImpl
+            -Xss1024K -Xmx1024M -Duser.language=ru -Duser.country=RU -Djavax.xml.parsers.DocumentBuilderFactory=com.sun.org.apache.xerces.internal.jaxp.DocumentBuilderFactoryImpl -Djavax.xml.parsers.SAXParserFactory=com.sun.org.apache.xerces.internal.jaxp.SAXParserFactoryImpl -javaagent:${lombok.lib}=ECJ
           </extraJvmArgs>
           <logLevel>INFO</logLevel>
           <copyWebapp>true</copyWebapp>

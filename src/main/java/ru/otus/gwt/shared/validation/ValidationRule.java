@@ -9,9 +9,13 @@ import java.util.Set;
 
 public class ValidationRule {
 
+    public static final Validator validator = Validation.buildDefaultValidatorFactory().getValidator();
+
     public static boolean isValid(User user){
-        Validator validator = Validation.buildDefaultValidatorFactory().getValidator();
-        Set<ConstraintViolation<User>> violations = validator.validate(user);
-        return violations.isEmpty();
+        return getErrors(user).isEmpty();
+    }
+
+    public static Set<ConstraintViolation<User>> getErrors(User user){
+        return validator.validate(user);
     }
 }

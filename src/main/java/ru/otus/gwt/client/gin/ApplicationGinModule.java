@@ -5,6 +5,7 @@ import ru.otus.gwt.client.service.ApplicationService;
 import ru.otus.gwt.client.text.ApplicationConstants;
 import ru.otus.gwt.client.validation.ValidatorFactory.GwtValidator;
 import ru.otus.gwt.client.widget.MainView.MainViewUiBinder;
+import ru.otus.gwt.client.widget.image.ApplicationImages;
 
 public class ApplicationGinModule extends AbstractGinModule {
     protected void configure() {
@@ -12,5 +13,6 @@ public class ApplicationGinModule extends AbstractGinModule {
         bind(ApplicationConstants.class);
         bind(MainViewUiBinder.class);
         bind(GwtValidator.class);
+        bind(ApplicationImages.class);
     }
 }

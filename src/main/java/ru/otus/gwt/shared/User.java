@@ -1,40 +1,27 @@
 package ru.otus.gwt.shared;
 
 import com.google.gwt.user.client.rpc.IsSerializable;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.experimental.FieldNameConstants;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@FieldNameConstants(prefix = "")
 public class User implements IsSerializable {
 
-    @NotNull
+    @NotEmpty
     @Size(min = 4, message = "Login must contain at least 4 characters.")
     private String login;
 
-    @NotNull
+    @NotEmpty
+    @Size(min = 4, message = "Password must contain at least 4 characters.")
     private String password;
-
-    public User() {
-    }
-
-    public User(String login, String password) {
-        this.login = login;
-        this.password = password;
-    }
-
-    public String getLogin() {
-        return login;
-    }
-
-    public void setLogin(String login) {
-        this.login = login;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(char[] password) {
-        this.password = String.valueOf(password);
-    }
 }

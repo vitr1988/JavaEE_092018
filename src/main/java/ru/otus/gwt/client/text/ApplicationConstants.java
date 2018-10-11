@@ -7,6 +7,9 @@ public interface ApplicationConstants extends Constants {
     @Key("login.label.alt")
     String login_label_alt();
 
+    @Key("logon.success")
+    String logon_success();
+
     @Key("login.placeholder.alt")
     String login_placeholder_alt();
 
