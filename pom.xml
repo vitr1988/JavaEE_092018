@@ -16,6 +16,7 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
     <javaee.version>8.0</javaee.version>
+    <servlet.version>4.0.0</servlet.version>
     <lombok.version>1.18.2</lombok.version>
     <hibernate.version>5.3.6.Final</hibernate.version>
     <junit.version>4.11</junit.version>
@@ -64,6 +65,13 @@
   </dependencyManagement>
 
   <dependencies>
+    <!-- only essential specifications for running application -->
+    <dependency>
+      <groupId>javax.servlet</groupId>
+      <artifactId>javax.servlet-api</artifactId>
+      <version>${servlet.version}</version>
+      <scope>provided</scope>
+    </dependency>
 
     <dependency>
       <groupId>org.projectlombok</groupId>
