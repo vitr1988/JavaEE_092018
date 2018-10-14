@@ -37,6 +37,7 @@
     <gwt.version>2.8.2</gwt.version>
     <gin.version>2.1.2</gin.version>
     <hibernate-validator.version>4.1.0.Final</hibernate-validator.version>
+    <jersey.version>2.27</jersey.version>
 
     <tomcat.deploymentPath>http://localhost:8080/manager/text</tomcat.deploymentPath>
     <glassfish.location>C:/JavaEE/glassfish5</glassfish.location>
@@ -285,6 +286,21 @@
           <artifactId>jaxb-impl</artifactId>
         </exclusion>
       </exclusions>
+    </dependency>
+
+    <!-- Jersey -->
+    <dependency>
+      <groupId>org.glassfish.jersey.core</groupId>
+      <artifactId>jersey-client</artifactId>
+      <version>${jersey.version}</version>
+      <scope>test</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>org.glassfish.jersey.inject</groupId>
+      <artifactId>jersey-hk2</artifactId>
+      <version>${jersey.version}</version>
+      <scope>test</scope>
     </dependency>
 
     <!-- This dependency should specify at last -->

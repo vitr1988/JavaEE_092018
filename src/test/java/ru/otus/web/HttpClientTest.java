@@ -1,6 +1,5 @@
 package ru.otus.web;
 
-import com.sun.xml.internal.fastinfoset.stax.events.Util;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.CloseableHttpClient;
@@ -22,7 +21,6 @@ public class HttpClientTest extends Assert {
     public void whenPostRequestUsingHttpClient() throws IOException {
         CloseableHttpClient client = HttpClients.createDefault();
         HttpPost httpPost = new HttpPost("http://localhost:8080/JavaEE/jsonb");
-
         httpPost.setHeader("Content-type", "application/json");
 
         CloseableHttpResponse response = client.execute(httpPost);
@@ -30,7 +28,7 @@ public class HttpClientTest extends Assert {
 
         final String content = new BufferedReader(new InputStreamReader(response.getEntity().getContent(),
                 StandardCharsets.UTF_8)).lines().collect(Collectors.joining());
-        assertFalse(Util.isEmptyString(content));
+        assertFalse(content == null);
         client.close();
     }
 
@@ -39,6 +37,7 @@ public class HttpClientTest extends Assert {
         // create the HttpURLConnection
         URL url = new URL("http://localhost:8080/JavaEE/jsonb");
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+        connection.setRequestProperty("Content-type", "application/json");
         connection.setRequestMethod("POST");
         // give it 5 seconds to respond
         connection.setReadTimeout(5 * 1000);
@@ -48,7 +47,7 @@ public class HttpClientTest extends Assert {
         BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream(),
                 StandardCharsets.UTF_8));
         String content = reader.lines().collect(Collectors.joining());
-        assertFalse(Util.isEmptyString(content));
+        assertFalse(content == null);
         reader.close();
     }
 }
