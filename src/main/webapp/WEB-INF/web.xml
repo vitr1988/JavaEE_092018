@@ -11,20 +11,12 @@
   </context-param>
 
   <servlet>
-      <servlet-name>ApplicationService</servlet-name>
-      <servlet-class>ru.otus.gwt.server.ApplicationServiceImpl</servlet-class>
+    <servlet-name>ApplicationService</servlet-name>
+    <servlet-class>ru.otus.gwt.server.ApplicationServiceImpl</servlet-class>
   </servlet>
   <servlet-mapping>
-      <servlet-name>ApplicationService</servlet-name>
-      <url-pattern>/Application/ApplicationService</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <servlet-name>remoteLoggerServiceImpl</servlet-name>
-    <servlet-class>com.allen_sauer.gwt.log.server.RemoteLoggerServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>remoteLoggerServiceImpl</servlet-name>
-    <url-pattern>/Application/gwt-log</url-pattern>
+    <servlet-name>ApplicationService</servlet-name>
+    <url-pattern>/Application/ApplicationService</url-pattern>
   </servlet-mapping>
 
   <resource-ref>
@@ -65,4 +57,14 @@
        <form-error-page>/WEB-INF/loginError.html</form-error-page>
      </form-login-config>
   </login-config>
+
+  <error-page>
+    <error-code>404</error-code>
+    <location>/AppExceptionHandler</location>
+  </error-page>
+
+  <error-page>
+    <exception-type>javax.servlet.ServletException</exception-type>
+    <location>/AppExceptionHandler</location>
+  </error-page>
 </web-app>
