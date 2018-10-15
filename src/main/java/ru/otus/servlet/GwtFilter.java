@@ -18,15 +18,13 @@ public class GwtFilter extends HttpFilter {
         final PushBuilder pushBuilder = request.newPushBuilder();
         if (pushBuilder != null) {
             Stream.of(new File(getServletContext().getRealPath("/Application")).listFiles())
+                    .filter(File::isFile)
+                    .filter(f -> f.getName().endsWith("js"))
                     .forEach(f -> {
-                        if (f.isFile()) {
-                            String fileName = f.getName();
-                            if (fileName.endsWith("js")) {
-                                pushBuilder.path("Application/" + fileName)
-                                        .addHeader("content-type", "text/javascript")
-                                        .push();
-                            }
-                        }
+                        pushBuilder.path("Application/" + f.getName())
+                                .addHeader("content-type", "application/javascript")
+                                .push();
+
                     });
 
             pushBuilder.path("css/style-all.min.css")
