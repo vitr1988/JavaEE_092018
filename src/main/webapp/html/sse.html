@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Server Sent events</title>
+    <meta charset="UTF-8">
+    <script>
+        var source = new EventSource("sse");
+        source.onmessage = function (event) {
+            var data = JSON.parse(event.data);
+            document.getElementById('plot').innerText = data.data;
+        }
+    </script>
+</head>
+<body>
+    <div id="plot">Здесь могла быть Ваша реклама</div>
+</body>
+</html>
