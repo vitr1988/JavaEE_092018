@@ -44,7 +44,7 @@ public class ServletTest {
 
     @Test
     public void shouldTestTextPrinted() {
-        ClientBuilder clientBuilder = ClientBuilder.newBuilder().sslContext(getTrustedAllSSLContext());
+        ClientBuilder clientBuilder = ClientBuilder.newBuilder().sslContext(initTrustedAllSSLContext());
         Client client = clientBuilder.build();
         WebTarget target = client.target("https://localhost:8443/JavaEE/testing");
 
@@ -52,7 +52,7 @@ public class ServletTest {
         assertEquals(200, response.getStatus());
     }
 
-    private SSLContext getTrustedAllSSLContext(){
+    public static SSLContext initTrustedAllSSLContext(){
         // Create a trust manager that does not validate certificate chains
         TrustManager[] trustAllCerts = new TrustManager[]{new X509TrustManager(){
             public java.security.cert.X509Certificate[] getAcceptedIssuers(){return null;}

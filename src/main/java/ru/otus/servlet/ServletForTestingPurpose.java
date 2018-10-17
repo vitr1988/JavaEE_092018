@@ -28,17 +28,17 @@ public class ServletForTestingPurpose extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        HttpServletRequestWrapper requestWrapper = new HttpServletRequestWrapper(request){
-            @Override
-            public String getParameter(String name) {
-                String value = super.getParameter(name);
-                if (name.equalsIgnoreCase("url")) {
-                    value = "http://" + value;
-                }
-                return value;
-            }
-        };
-        request.getRequestDispatcher("/push").forward(requestWrapper, response);
+//        HttpServletRequestWrapper requestWrapper = new HttpServletRequestWrapper(request){
+//            @Override
+//            public String getParameter(String name) {
+//                String value = super.getParameter(name);
+//                if (name.equalsIgnoreCase("url")) {
+//                    value = "http://" + value;
+//                }
+//                return value;
+//            }
+//        };
+//        request.getRequestDispatcher("/push").forward(requestWrapper, response);
 
         response.setContentType("text/html");
         try(PrintWriter pw = response.getWriter()) {
