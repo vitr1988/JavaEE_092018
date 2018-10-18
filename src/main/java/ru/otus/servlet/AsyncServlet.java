@@ -41,20 +41,20 @@ public class AsyncServlet extends HttpServlet {
         final int timeoutInMsc = Integer.decode(timeout);
         final AsyncContext asyncContext = request.startAsync();
 
-        ScheduledExecutorService executor = Executors.newSingleThreadScheduledExecutor();
-        executor.schedule(() -> {
-            print(new StringInputStream(MessageFormat.format("Results have being calculated for {0} secs", timeout)), asyncContext);
-            return null;
-        }, timeoutInMsc, TimeUnit.MILLISECONDS);
-        executor.shutdown();
-//        CompletableFuture.runAsync(() -> {
-//            try {
-//                Thread.sleep(timeoutInMsc);
-//                asyncContext.getResponse().getWriter().println(MessageFormat.format("Results have being calculated for {0} miliseconds", timeout));
-//            } catch (Exception e) {
-//                e.printStackTrace();
-//            }
-//        }).thenAccept(v -> asyncContext.complete());
+//        ScheduledExecutorService executor = Executors.newSingleThreadScheduledExecutor();
+//        executor.schedule(() -> {
+//            print(new StringInputStream(MessageFormat.format("Results have being calculated for {0} secs", timeout)), asyncContext);
+//            return null;
+//        }, timeoutInMsc, TimeUnit.MILLISECONDS);
+//        executor.shutdown();
+        CompletableFuture.runAsync(() -> {
+            try {
+                Thread.sleep(timeoutInMsc);
+                asyncContext.getResponse().getWriter().println(MessageFormat.format("Results have being calculated for {0} miliseconds", timeout));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }).thenAccept(v -> asyncContext.complete());
     }
 
     private void print(final InputStream largeText, final AsyncContext context) throws IOException {
