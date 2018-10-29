@@ -10,6 +10,11 @@
     <param-value>file:///D:/Project/Otus/JavaEE_092018/src/main/resources/xml/data.xml</param-value>
   </context-param>
 
+  <context-param>
+    <param-name>AppID</param-name>
+    <param-value>123</param-value>
+  </context-param>
+
   <servlet>
     <servlet-name>ApplicationService</servlet-name>
     <servlet-class>ru.otus.gwt.server.ApplicationServiceImpl</servlet-class>
@@ -67,4 +72,21 @@
     <exception-type>javax.servlet.ServletException</exception-type>
     <location>/AppExceptionHandler</location>
   </error-page>
+
+  <jsp-config>
+    <jsp-property-group>
+      <url-pattern>*.jsp</url-pattern>
+      <url-pattern>*.html</url-pattern>
+      <page-encoding>UTF-8</page-encoding>
+    </jsp-property-group>
+  </jsp-config>
+
+  <servlet>
+    <servlet-name>TodayService</servlet-name>
+    <jsp-file>/today.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>TodayService</servlet-name>
+    <url-pattern>/today.do</url-pattern>
+  </servlet-mapping>
 </web-app>
