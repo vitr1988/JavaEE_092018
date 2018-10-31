@@ -38,6 +38,7 @@
     <gin.version>2.1.2</gin.version>
     <hibernate-validator.version>4.1.0.Final</hibernate-validator.version>
     <jersey.version>2.27</jersey.version>
+    <jstl.version>1.2.1</jstl.version>
 
     <tomcat.deploymentPath>http://localhost:8080/manager/text</tomcat.deploymentPath>
     <glassfish.location>C:/JavaEE/glassfish5</glassfish.location>
@@ -301,6 +302,25 @@
       <artifactId>jersey-hk2</artifactId>
       <version>${jersey.version}</version>
       <scope>test</scope>
+    </dependency>
+
+    <!-- JSTL -->
+    <dependency>
+      <groupId>javax.servlet.jsp.jstl</groupId>
+      <artifactId>javax.servlet.jsp.jstl-api</artifactId>
+      <version>${jstl.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.glassfish.web</groupId>
+      <artifactId>javax.servlet.jsp.jstl</artifactId>
+      <version>${jstl.version}</version>
+      <exclusions>
+        <!-- jstl-api was adding selvlet-api 2.5 and jsp-api-->
+        <exclusion>
+          <artifactId>jstl-api</artifactId>
+          <groupId>javax.servlet.jsp.jstl</groupId>
+        </exclusion>
+      </exclusions>
     </dependency>
 
     <!-- This dependency should specify at last -->

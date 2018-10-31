@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<taglib xmlns="http://java.sun.com/xml/ns/javaee"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-jsptaglibrary_2_1.xsd"
+        version="2.1">
+
+    <tlib-version>1.0</tlib-version>
+    <short-name>randomtaglibrary</short-name>
+    <uri>/tags</uri>
+
+    <tag>
+        <name>random</name>
+        <tag-class>ru.otus.jsp.handler.RandomTagHandler</tag-class>
+        <body-content>JSP</body-content>
+        <attribute>
+            <name>size</name>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <name>seed</name>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <name>threshold</name>
+            <rtexprvalue>true</rtexprvalue>
+            <required>no</required>
+        </attribute>
+    </tag>
+</taglib>
