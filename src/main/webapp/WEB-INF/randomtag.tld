@@ -23,8 +23,8 @@
         </attribute>
         <attribute>
             <name>threshold</name>
+            <required>false</required>
             <rtexprvalue>true</rtexprvalue>
-            <required>no</required>
         </attribute>
     </tag>
 </taglib>
