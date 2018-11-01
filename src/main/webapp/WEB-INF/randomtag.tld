@@ -7,7 +7,7 @@
 
     <tlib-version>1.0</tlib-version>
     <short-name>randomtaglibrary</short-name>
-    <uri>/tags</uri>
+    <uri>/customtags</uri>
 
     <tag>
         <name>random</name>
@@ -15,7 +15,9 @@
         <body-content>JSP</body-content>
         <attribute>
             <name>size</name>
-            <rtexprvalue>true</rtexprvalue>
+            <required>true</required>
+            <rtexprvalue>false</rtexprvalue>
+            <type>java.lang.Integer</type>
         </attribute>
         <attribute>
             <name>seed</name>

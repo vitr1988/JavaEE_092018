@@ -31,7 +31,7 @@ public class JSTLServlet extends HttpServlet {
         request.setAttribute("empList", empList);
 
         request.setAttribute("htmlTagData", "<br/> creates a new line.");
-        request.setAttribute("url", "http://www.otus.ru");
+        request.setAttribute("url", "otus");
         RequestDispatcher rd = getServletContext().getRequestDispatcher("/jstl.jsp");
         rd.forward(request, response);
     }

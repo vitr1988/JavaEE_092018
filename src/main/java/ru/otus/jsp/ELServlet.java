@@ -30,6 +30,7 @@ public class ELServlet extends HttpServlet {
         session.setAttribute("employee", emp);
 
         response.addCookie(new Cookie("User.Cookie","TomcatAdmin"));
+
         getServletContext().setAttribute("User.Cookie","TomcatUser");
 
         RequestDispatcher rd = getServletContext().getRequestDispatcher("/el.jsp");

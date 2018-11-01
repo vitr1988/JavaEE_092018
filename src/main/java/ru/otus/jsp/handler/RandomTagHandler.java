@@ -7,7 +7,7 @@ import java.util.Random;
 
 public class RandomTagHandler extends BodyTagSupport {
 
-    private int size = 4;
+    private Integer size;
 
     private Long seed;
 
@@ -32,6 +32,11 @@ public class RandomTagHandler extends BodyTagSupport {
         }
         return EVAL_PAGE;
     }
+
+//    @Override
+//    public void doInitBody() throws JspException {
+//
+//    }
 
     @Override
     public int doAfterBody() throws JspException {

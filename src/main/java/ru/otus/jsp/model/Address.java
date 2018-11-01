@@ -7,5 +7,5 @@ public class Address {
 
     private String address;
     private String type;
-    private int postIndex;
+    private Integer postIndex = 0;
 }

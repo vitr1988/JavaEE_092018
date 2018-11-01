@@ -39,5 +39,10 @@
 <%-- c:url example --%>
 <a href="<c:url value="${requestScope.url}"></c:url>">Otus</a>
 
+
+<c:url value="${requestScope.url}">
+    <c:param name="lang" value="ru"/>
+</c:url>
+
 </body>
 </html>

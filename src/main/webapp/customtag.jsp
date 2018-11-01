@@ -1,5 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib prefix="rand" uri="/tags" %>
+<%@ taglib prefix="rand" uri="/customtags" %>
 <html>
 <head>
     <title>Страница со сгенерированным значением</title>
