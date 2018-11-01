@@ -1,3 +1,4 @@
+<%@ page import="java.util.Objects" %>
 <%@page language="java" contentType="text/html; UTF-8" %>
 <html>
 
@@ -11,8 +12,8 @@
 
 <jsp:include page="includable.jsp">
     <jsp:param name="address" value="Russia, Samara"/>
-    <jsp:param name="type" value='<%= request.getParameter("type")%>'/>
-    <jsp:param name="postIndex" value='<%= request.getParameter("postIndex")%>'/>
+    <jsp:param name="type" value='<%= Objects.toString(request.getParameter("type"), "") %>'/>
+    <jsp:param name="postIndex" value='<%= Objects.toString(request.getParameter("postIndex"), "1") %>'/>
 </jsp:include>
 
 </body>
