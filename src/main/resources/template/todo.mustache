@@ -5,8 +5,10 @@
 <body>
 {{#todos}}
     <h2>Hello, {{user}}.</h2>
-<small>Created on {{currentDate}}</small>
-<p>{{text}}</p>
+    <small>Created on {{currentDate}}</small>
+    <p>{{text}}</p>
+    <h3>{{#checkAndPrint}}{{/checkAndPrint}}</h3>
+    <hr/>
 {{/todos}}
 {{^todos}}
     <p>No todos!</p>

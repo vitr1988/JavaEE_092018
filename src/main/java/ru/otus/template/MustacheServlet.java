@@ -14,6 +14,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.*;
+import java.util.function.Function;
 
 @WebServlet("/mustache")
 public class MustacheServlet extends HttpServlet {
@@ -28,8 +29,8 @@ public class MustacheServlet extends HttpServlet {
 
             Map<String, Object> context = new HashMap<>();
             List<ToDo> todo = Arrays.asList(
-                    new ToDo("Ivanov Vitalii", new Date(), "Hello World!")
-                    , new ToDo("Sidorov Petr", new Date("04/11/2018"), "Hi World!")
+                    new ToDo("Ivanov Vitalii", new Date(), "Hello World!", true)
+                    , new ToDo("Sidorov Petr", new Date("04/11/2018"), "Hi World!", false)
             );
             context.put("todos", todo);
 
