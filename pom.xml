@@ -41,6 +41,7 @@
     <jstl.version>1.2.1</jstl.version>
     <freemarker.version>2.3.28</freemarker.version>
     <mustache.version>0.9.5</mustache.version>
+    <tomcat.version>9.0.12</tomcat.version>
 
     <tomcat.deploymentPath>http://localhost:8080/manager/text</tomcat.deploymentPath>
     <glassfish.location>C:/JavaEE/glassfish5</glassfish.location>
@@ -49,6 +50,7 @@
     <mavenbuilder.version>3.0.0</mavenbuilder.version>
     <mavendeploy.version>2.2</mavendeploy.version>
     <cargo.version>1.6.10</cargo.version>
+    <jetty-jspc-plugin.version>9.4.12.v20180830</jetty-jspc-plugin.version>
     <maven.compiler.source>1.8</maven.compiler.source>
     <maven.compiler.target>1.8</maven.compiler.target>
 
@@ -512,6 +514,27 @@
         </configuration>
       </plugin>
 
+      <!-- precompile jsp for best performance -->
+      <plugin>
+        <groupId>org.eclipse.jetty</groupId>
+        <artifactId>jetty-jspc-maven-plugin</artifactId>
+        <version>${jetty-jspc-plugin.version}</version>
+        <dependencies>
+          <dependency>
+            <groupId>org.apache.tomcat</groupId>
+            <artifactId>tomcat-jasper</artifactId>
+            <version>${tomcat.version}</version>
+          </dependency>
+        </dependencies>
+        <executions>
+          <execution>
+            <id>jspc</id>
+            <goals>
+              <goal>jspc</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
     </plugins>
   </build>
 </project>
