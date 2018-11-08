@@ -84,6 +84,7 @@
   <servlet>
     <servlet-name>TodayService</servlet-name>
     <jsp-file>/today.jsp</jsp-file>
+    <load-on-startup>1</load-on-startup>
   </servlet>
   <servlet-mapping>
     <servlet-name>TodayService</servlet-name>

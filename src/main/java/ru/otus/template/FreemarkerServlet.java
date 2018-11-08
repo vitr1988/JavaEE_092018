@@ -8,7 +8,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.util.Arrays;
+import java.util.Date;
 
 @WebServlet("/freemarker")
 public class FreemarkerServlet extends HttpServlet {
@@ -27,6 +29,9 @@ public class FreemarkerServlet extends HttpServlet {
         emp2.setName("Petr Sidorov");
 
         request.setAttribute("persons", Arrays.asList(emp, emp2));
+
+        request.setAttribute("currentDate", new Date());
+        request.setAttribute("digit", new BigDecimal("101.59"));
 
         request.getRequestDispatcher("/WEB-INF/classes/template/page.ftl").forward(request, response);
     }

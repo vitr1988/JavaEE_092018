@@ -18,6 +18,6 @@ public class ToDo {
     private boolean done;
 
     public Function<Object, Object> checkAndPrint() {
-        return obj -> done ? String.format("<small>Task has done successfully<small>", obj) : "";
+        return obj -> done ? String.format("<small>Task has done successfully at %s<small>", obj) : "";
     }
 }
