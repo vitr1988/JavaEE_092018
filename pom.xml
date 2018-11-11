@@ -44,6 +44,8 @@
     <tomcat.version>9.0.12</tomcat.version>
     <struts.version>2.5.18</struts.version>
     <tiles.version>3.0.8</tiles.version>
+    <primefaces.version>5.2.RC1</primefaces.version>
+    <primefaces.themes.version>1.0.10</primefaces.themes.version>
 
     <tomcat.deploymentPath>http://localhost:8080/manager/text</tomcat.deploymentPath>
     <glassfish.location>C:/JavaEE/glassfish5</glassfish.location>
@@ -353,6 +355,28 @@
       <version>${tiles.version}</version>
     </dependency>
 
+    <dependency>
+      <groupId>org.primefaces</groupId>
+      <artifactId>primefaces</artifactId>
+      <version>${primefaces.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.primefaces.themes</groupId>
+      <artifactId>all-themes</artifactId>
+      <version>${primefaces.themes.version}</version>
+    </dependency>
+
+    <!-- Use if deploying to a servlet container (Tomcat, Jetty, etc) -->
+    <!-- <dependency>
+       <groupId>com.sun.faces</groupId>
+       <artifactId>jsf-api</artifactId>
+       <version>2.2.18</version>
+     </dependency>
+     <dependency>
+       <groupId>com.sun.faces</groupId>
+       <artifactId>jsf-impl</artifactId>
+       <version>2.2.18</version>
+     </dependency>-->
 
     <!-- This dependency should specify at last -->
     <dependency>

@@ -22,11 +22,8 @@ public class JPAServlet extends HttpServlet {
 
     public static final String PERSISTENCE_UNIT_NAME = "jpa";
 
-    private static final EntityManagerFactory emf =
-          Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME); // for Tomcat
-
-//    @PersistenceUnit(unitName = PERSISTENCE_UNIT_NAME)
-//    EntityManagerFactory emf; // for Glassfish
+    @PersistenceUnit(unitName = PERSISTENCE_UNIT_NAME)
+    EntityManagerFactory emf;
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

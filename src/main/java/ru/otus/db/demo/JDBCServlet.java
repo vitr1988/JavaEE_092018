@@ -21,8 +21,7 @@ import java.util.stream.Stream;
 @WebServlet("/jdbc")
 public class JDBCServlet extends HttpServlet {
 
-    @Resource(name = "jdbc/OracleDS") // for Tomcat
-//    @Resource(lookup = "jdbc/OracleDS") // for Glassfish
+    @Resource(lookup = "jdbc/OracleDS")
     private DataSource ds;
 
     @Override

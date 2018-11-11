@@ -51,9 +51,9 @@
       <web-resource-name>Secured Application</web-resource-name>
       <url-pattern>/*</url-pattern>
     </web-resource-collection>
-    <user-data-constraint>
+    <!--<user-data-constraint>
       <transport-guarantee>CONFIDENTIAL</transport-guarantee>
-    </user-data-constraint>
+    </user-data-constraint>-->
   </security-constraint>
 
    <login-config>
@@ -169,4 +169,24 @@
     <filter-name>struts2</filter-name>
     <url-pattern>*.action</url-pattern>
   </filter-mapping>
+
+  <context-param>
+      <param-name>javax.faces.PROJECT_STAGE</param-name>
+      <param-value>Development</param-value>
+  </context-param>
+  <context-param>
+    <param-name>javax.faces.FACELETS_REFRESH_PERIOD</param-name>
+    <param-value>10</param-value> <!-- Cache for 10 seconds -->
+  </context-param>
+  <servlet>
+      <servlet-name>Faces Servlet</servlet-name>
+      <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
+      <load-on-startup>1</load-on-startup>
+  </servlet>
+  <servlet-mapping>
+      <servlet-name>Faces Servlet</servlet-name>
+      <url-pattern>*.xhtml</url-pattern>
+      <url-pattern>*.jsf</url-pattern>
+      <url-pattern>*.faces</url-pattern>
+  </servlet-mapping>
 </web-app>
