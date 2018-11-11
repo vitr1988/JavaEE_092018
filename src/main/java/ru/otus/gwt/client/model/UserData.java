@@ -1,4 +1,4 @@
-package ru.otus.gwt.client;
+package ru.otus.gwt.client.model;
 
 import jsinterop.annotations.JsOverlay;
 import jsinterop.annotations.JsPackage;

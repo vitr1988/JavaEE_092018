@@ -42,6 +42,8 @@
     <freemarker.version>2.3.28</freemarker.version>
     <mustache.version>0.9.5</mustache.version>
     <tomcat.version>9.0.12</tomcat.version>
+    <struts.version>2.5.18</struts.version>
+    <tiles.version>3.0.8</tiles.version>
 
     <tomcat.deploymentPath>http://localhost:8080/manager/text</tomcat.deploymentPath>
     <glassfish.location>C:/JavaEE/glassfish5</glassfish.location>
@@ -338,6 +340,19 @@
       <artifactId>compiler</artifactId>
       <version>${mustache.version}</version>
     </dependency>
+
+    <dependency>
+      <groupId>org.apache.struts</groupId>
+      <artifactId>struts2-core</artifactId>
+      <version>${struts.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.apache.tiles</groupId>
+      <artifactId>tiles-jsp</artifactId>
+      <version>${tiles.version}</version>
+    </dependency>
+
 
     <!-- This dependency should specify at last -->
     <dependency>
