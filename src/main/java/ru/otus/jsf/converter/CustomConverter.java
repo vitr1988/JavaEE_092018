@@ -5,7 +5,7 @@ import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
 
-@FacesConverter(value = "fooConverter", managed = true)
+@FacesConverter(value = "fooConverter")
 public class CustomConverter implements Converter {
 
     @Override

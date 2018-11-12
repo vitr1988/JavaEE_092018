@@ -5,7 +5,7 @@ import javax.faces.context.FacesContext;
 import javax.faces.validator.FacesValidator;
 import javax.faces.validator.Validator;
 
-@FacesValidator(value = "fooValidator", managed = true)
+@FacesValidator(value = "fooValidator")
 public class CustomValidator implements Validator {
     @Override
     public void validate(FacesContext context, UIComponent component, Object value) {

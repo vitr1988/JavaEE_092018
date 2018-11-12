@@ -8,7 +8,7 @@
         <from-view-id>*</from-view-id>
         <navigation-case>
             <from-outcome>nextPage</from-outcome>
-            <to-view-id>/page.xhtml</to-view-id>
+            <to-view-id>/faces/page.xhtml</to-view-id>
         </navigation-case>
 
     </navigation-rule>
