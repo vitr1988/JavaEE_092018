@@ -1,25 +1,22 @@
 package ru.otus.jsf.util;
 
-import java.io.Serializable;
+import lombok.Getter;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
+import java.io.Serializable;
 
 @ManagedBean
 @ApplicationScoped
+@Getter
 public class AppUrlStore implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	private String baseUrl = null;
-	private String simpleCrudUrl = null;
-	private String freshSafeCrudUrl = null;
-
-	public String getBaseUrl() {return baseUrl; }
-	public String getSimpleCrudUrl() { return simpleCrudUrl; }
-	public String getFreshSafeCrudUrl() {return freshSafeCrudUrl; }
+	private String baseUrl;
+	private String simpleCrudUrl;
 
 	@PostConstruct
     public void init() {
@@ -28,6 +25,5 @@ public class AppUrlStore implements Serializable {
 
 		this.baseUrl = baseUrl;
 		this.simpleCrudUrl = baseUrl + "simplecrud.xhtml";
-		this.freshSafeCrudUrl = baseUrl + "freshsafecrud.xhtml";
     }
 }

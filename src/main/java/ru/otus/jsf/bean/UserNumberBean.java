@@ -2,13 +2,13 @@ package ru.otus.jsf.bean;
 
 import lombok.Data;
 
-import javax.enterprise.context.SessionScoped;
-import javax.inject.Named;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 import java.io.Serializable;
 import java.util.Random;
 
 @Data
-@Named
+@ManagedBean
 @SessionScoped
 public class UserNumberBean implements Serializable {
 

@@ -17,12 +17,12 @@ public class SimpleCrudBean implements Serializable {
 
     private List<Student> list;
     private Student item = new Student();
-    private Student beforeEditItem = null;
+    private Student beforeEditItem;
     private boolean edit;
 
     @PostConstruct
     public void init() {
-        list = new ArrayList<Student>();
+        list = new ArrayList<>();
     }
 
     public void add() {

@@ -192,4 +192,9 @@
     <servlet-name>Faces Servlet</servlet-name>
     <url-pattern>*.xhtml</url-pattern>
   </servlet-mapping>
+
+  <context-param>
+    <param-name>BaseUrl</param-name>
+    <param-value>http://localhost:8080/JavaEE/</param-value>
+  </context-param>
 </web-app>

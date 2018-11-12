@@ -14,10 +14,8 @@
 
     <h:body>
         <h:panelGrid title="JSF panelGrid Title" border="10" columns="2">
-
             <h:outputLabel value="JSF standard label"/>
             <h:button value="JSF default button" title="JSF button Title" outcome="nextPage"/>
-
         </h:panelGrid>
 
         <br/>
@@ -26,13 +24,9 @@
         <h:form>
             <p:panel header="PrimeFaces Components">
                 <p:outputLabel for="inputTextId" value="Input value: "/>
-
                 <p:inputText id="inputTextId" title="Binding with ManagedBean" value="#{mainBean.inputText}" />
-
                 <br/>
-
-                <p:commandButton value="GO to next page" action="nextPage"/>
-
+                <p:commandButton value="Go to next page" action="nextPage"/>
             </p:panel>
         </h:form>
 

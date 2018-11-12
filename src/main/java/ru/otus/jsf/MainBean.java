@@ -2,14 +2,14 @@ package ru.otus.jsf;
 
 import lombok.Data;
 
-import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
-import javax.inject.Named;
 import java.io.Serializable;
 
 @Data
-@Named
+@ManagedBean
 @SessionScoped
 public class MainBean implements Serializable {
 
