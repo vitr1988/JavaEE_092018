@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>WebSocket</title>
+    <script>
+
+        var webSocket = new WebSocket('ws://127.0.0.1:8080/JavaEE/wsserver');
+
+        webSocket.onmessage = function(evt) {
+            document.getElementById('serverResponse').innerText = evt.data;
+        };
+
+        function sendServerMessage() {
+            /*var msg = {
+                type: "message",
+                text: "World",
+                date: Date.now()
+            };
+            webSocket.send(JSON.stringify(msg));*/
+            webSocket.send(document.getElementById('serverMessage').value);
+        }
+
+
+    </script>
+</head>
+<body>
+    <div id="serverResponse"></div>
+    <input id="serverMessage" type="text" placeholder="please enter text"/>
+    <input type="button" value="Push message" onclick="sendServerMessage()">
+</body>
+</html>
