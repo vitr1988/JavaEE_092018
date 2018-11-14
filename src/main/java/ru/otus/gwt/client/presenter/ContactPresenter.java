@@ -10,6 +10,8 @@ import com.google.gwt.user.client.ui.Widget;
 import ru.otus.gwt.client.event.AddContactEvent;
 import ru.otus.gwt.client.event.EditContactEvent;
 import ru.otus.gwt.client.service.ContactServiceAsync;
+import ru.otus.gwt.client.ws.MessageEvent;
+import ru.otus.gwt.client.ws.WebSocket;
 import ru.otus.gwt.shared.model.ContactDetails;
 
 import java.util.ArrayList;
@@ -23,10 +25,12 @@ public class ContactPresenter implements Presenter {
     HasClickHandlers getAddButton();
     HasClickHandlers getDeleteButton();
     HasClickHandlers getList();
+    HasClickHandlers getActivateWebsocket();
     void setData(List<String> data);
     int getClickedRow(ClickEvent event);
     List<Integer> getSelectedRows();
     Widget asWidget();
+    void setLabelValue(String value);
   }
 
   private final ContactServiceAsync rpcService;
@@ -52,6 +56,15 @@ public class ContactPresenter implements Presenter {
         String id = contactDetails.get(selectedRow).getId();
         eventBus.fireEvent(new EditContactEvent(id));
       }
+    });
+
+    display.getActivateWebsocket().addClickHandler(event -> {
+      WebSocket webSocket = new WebSocket("ws://localhost:8080/JavaEE/ratesrv");
+      webSocket.onmessage = (evt) -> {
+        MessageEvent messageEvent = evt.cast();
+        display.setLabelValue(messageEvent.getData());
+        return evt;
+      };
     });
   }
 

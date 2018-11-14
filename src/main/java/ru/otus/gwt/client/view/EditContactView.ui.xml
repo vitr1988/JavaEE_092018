@@ -25,6 +25,5 @@
 		  <g:Button ui:field="cancelButton"><ui:text from="{resources.cancel_button_alt}" /></g:Button>
 	  	</g:HorizontalPanel>
 	  </g:VerticalPanel>
-
   </g:DecoratorPanel>
 </ui:UiBinder> 

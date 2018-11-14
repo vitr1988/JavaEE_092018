@@ -46,7 +46,7 @@ public class ServletTest {
     public void shouldTestTextPrinted() {
         ClientBuilder clientBuilder = ClientBuilder.newBuilder().sslContext(initTrustedAllSSLContext());
         Client client = clientBuilder.build();
-        WebTarget target = client.target("https://localhost:8443/JavaEE/testing");
+        WebTarget target = client.target("http://localhost:8080/JavaEE/testing");
 
         Response response = target.request(MediaType.TEXT_HTML).get();
         assertEquals(200, response.getStatus());

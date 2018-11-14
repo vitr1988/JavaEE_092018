@@ -37,27 +37,33 @@ public class EditContactViewImpl extends Composite implements EditContactPresent
     detailsTable.setWidget(2, 1, emailAddress);
     firstName.setFocus(true);
   }
-  
+
+  @Override
   public HasValue<String> getFirstName() {
     return firstName;
   }
 
+  @Override
   public HasValue<String> getLastName() {
     return lastName;
   }
 
+  @Override
   public HasValue<String> getEmailAddress() {
     return emailAddress;
   }
 
+  @Override
   public HasClickHandlers getSaveButton() {
     return saveButton;
   }
-  
+
+  @Override
   public HasClickHandlers getCancelButton() {
     return cancelButton;
   }
-  
+
+  @Override
   public Widget asWidget() {
     return this;
   }

@@ -18,7 +18,6 @@ public class ContactViewImpl extends Composite implements ContactPresenter.Displ
   public interface ContactView extends UiBinder<DecoratorPanel, ContactViewImpl> {
   }
 
-
   @UiField
   Button addButton;
 
@@ -26,24 +25,39 @@ public class ContactViewImpl extends Composite implements ContactPresenter.Displ
   Button deleteButton;
 
   @UiField
+  Button activateWebSocketButton;
+
+  @UiField
   FlexTable contactsTable;
+
+  @UiField
+  Label rateLabel;
 
   public ContactViewImpl() {
     initWidget(ApplicationInjector.INSTANCE.getContactView().createAndBindUi(this));
   }
 
+  @Override
   public HasClickHandlers getAddButton() {
     return addButton;
   }
 
+  @Override
   public HasClickHandlers getDeleteButton() {
     return deleteButton;
   }
 
+  @Override
   public HasClickHandlers getList() {
     return contactsTable;
   }
 
+  @Override
+  public HasClickHandlers getActivateWebsocket() {
+    return activateWebSocketButton;
+  }
+
+  @Override
   public void setData(List<String> data) {
     contactsTable.removeAllRows();
 
@@ -53,36 +67,38 @@ public class ContactViewImpl extends Composite implements ContactPresenter.Displ
     }
   }
 
+  @Override
   public int getClickedRow(ClickEvent event) {
     int selectedRow = -1;
     HTMLTable.Cell cell = contactsTable.getCellForEvent(event);
-
     if (cell != null) {
-      // Suppress clicks if the user is actually selecting the
-      //  check box
-      //
+      // Suppress clicks if the user is actually selecting the check box
       if (cell.getCellIndex() > 0) {
         selectedRow = cell.getRowIndex();
       }
     }
-
     return selectedRow;
   }
 
+  @Override
   public List<Integer> getSelectedRows() {
-    List<Integer> selectedRows = new ArrayList<Integer>();
-
+    List<Integer> selectedRows = new ArrayList<>();
     for (int i = 0; i < contactsTable.getRowCount(); ++i) {
       CheckBox checkBox = (CheckBox)contactsTable.getWidget(i, 0);
       if (checkBox.getValue()) {
         selectedRows.add(i);
       }
     }
-
     return selectedRows;
   }
 
+  @Override
   public Widget asWidget() {
     return this;
+  }
+
+  @Override
+  public void setLabelValue(String value) {
+    rateLabel.setText(value);
   }
 }

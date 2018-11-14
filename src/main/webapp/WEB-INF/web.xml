@@ -92,14 +92,14 @@
     <url-pattern>/today.do</url-pattern>
   </servlet-mapping>
 
- <!-- <servlet>
+  <servlet>
     <servlet-name>freemarker</servlet-name>
     <servlet-class>freemarker.ext.servlet.FreemarkerServlet</servlet-class>
-    &lt;!&ndash;
+    <!--
       Init-param documentation:
       https://freemarker.apache.org/docs/api/freemarker/ext/servlet/FreemarkerServlet.html
-    &ndash;&gt;
-    &lt;!&ndash; FreemarkerServlet settings: &ndash;&gt;
+    -->
+    <!-- FreemarkerServlet settings: -->
     <init-param>
       <param-name>TemplatePath</param-name>
       <param-value>/</param-value>
@@ -110,39 +110,39 @@
     </init-param>
     <init-param>
       <param-name>ExceptionOnMissingTemplate</param-name>
-      &lt;!&ndash; true => HTTP 500 on missing template, instead of HTTP 404. &ndash;&gt;
+      <!-- true => HTTP 500 on missing template, instead of HTTP 404. -->
       <param-value>true</param-value>
     </init-param>
 
-    &lt;!&ndash; FreeMarker engine settings: &ndash;&gt;
+    <!-- FreeMarker engine settings: -->
     <init-param>
       <param-name>incompatible_improvements</param-name>
       <param-value>2.3.23</param-value>
     </init-param>
     <init-param>
       <param-name>template_exception_handler</param-name>
-      &lt;!&ndash; Use "html_debug" during development! &ndash;&gt;
+      <!-- Use "html_debug" during development! -->
       <param-value>rethrow</param-value>
     </init-param>
     <init-param>
       <param-name>template_update_delay</param-name>
-      &lt;!&ndash; Use 0 during development! Consider what value you need otherwise. &ndash;&gt;
+      <!-- Use 0 during development! Consider what value you need otherwise. -->
       <param-value>30 s</param-value>
     </init-param>
     <init-param>
       <param-name>default_encoding</param-name>
-      &lt;!&ndash; The encoding of the template files: &ndash;&gt;
+      <!-- The encoding of the template files: -->
       <param-value>UTF-8</param-value>
     </init-param>
     <init-param>
       <param-name>output_encoding</param-name>
-      &lt;!&ndash; The encoding of the template output; Note that you must set
-           "ResponseCharacterEncodring" to "fromTemplate" for this to work! &ndash;&gt;
+      <!-- The encoding of the template output; Note that you must set
+           "ResponseCharacterEncodring" to "fromTemplate" for this to work! -->
       <param-value>UTF-8</param-value>
     </init-param>
     <init-param>
       <param-name>locale</param-name>
-      &lt;!&ndash; Influences number and date/time formatting, etc. &ndash;&gt;
+      <!-- Influences number and date/time formatting, etc. -->
       <param-value>ru_RU</param-value>
     </init-param>
     <init-param>
@@ -156,10 +156,10 @@
   <servlet-mapping>
     <servlet-name>freemarker</servlet-name>
     <url-pattern>*.ftl</url-pattern>
-    &lt;!&ndash; HTML and XML auto-escaped if incompatible_improvements >= 2.3.24: &ndash;&gt;
+    <!-- HTML and XML auto-escaped if incompatible_improvements >= 2.3.24: -->
     <url-pattern>*.ftlh</url-pattern>
     <url-pattern>*.ftlx</url-pattern>
-  </servlet-mapping>-->
+  </servlet-mapping>
 
   <filter>
     <filter-name>struts2</filter-name>

@@ -40,6 +40,9 @@ public interface ApplicationConstants extends Constants {
     @Key("delete.button.alt")
     String delete_button_alt();
 
+    @Key("activate_websocket.button.alt")
+    String activate_websocket_button_alt();
+
     @Key("save.button.alt")
     String save_button_alt();
 
