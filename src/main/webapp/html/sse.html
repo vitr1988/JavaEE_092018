@@ -4,7 +4,7 @@
     <title>Server Sent events</title>
     <meta charset="UTF-8">
     <script>
-        var source = new EventSource("sse");
+        var source = new EventSource("/JavaEE/sse");
         source.onmessage = function (event) {
             var data = JSON.parse(event.data);
             document.getElementById('plot').innerText = data.data;

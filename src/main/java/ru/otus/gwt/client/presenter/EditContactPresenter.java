@@ -1,7 +1,5 @@
 package ru.otus.gwt.client.presenter;
 
-import com.google.gwt.event.dom.client.ClickEvent;
-import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.dom.client.HasClickHandlers;
 import com.google.gwt.event.shared.HandlerManager;
 import com.google.gwt.user.client.Window;
@@ -59,17 +57,9 @@ public class EditContactPresenter implements Presenter {
   }
   
   public void bind() {
-    this.display.getSaveButton().addClickHandler(new ClickHandler() {   
-      public void onClick(ClickEvent event) {
-        doSave();
-      }
-    });
+    this.display.getSaveButton().addClickHandler(event -> doSave());
 
-    this.display.getCancelButton().addClickHandler(new ClickHandler() {   
-      public void onClick(ClickEvent event) {
-        eventBus.fireEvent(new EditContactCancelledEvent());
-      }
-    });
+    this.display.getCancelButton().addClickHandler(event -> eventBus.fireEvent(new EditContactCancelledEvent()));
   }
 
   public void go(final HasWidgets container) {

@@ -10,9 +10,10 @@ import ru.otus.gwt.client.service.ContactServiceAsync;
 
 public class ContactEntryPoint implements EntryPoint {
 
+  @Override
   public void onModuleLoad() {
     HandlerManager eventBus = new HandlerManager(null);
-    AppController appViewer = new AppController(ApplicationInjector.INSTANCE.getContactService(), eventBus);
-    appViewer.go(RootPanel.get());
+    AppController controller = new AppController(ApplicationInjector.INSTANCE.getContactService(), eventBus);
+    controller.go(RootPanel.get());
   }
 }
