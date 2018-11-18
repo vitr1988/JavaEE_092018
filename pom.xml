@@ -42,6 +42,7 @@
     <freemarker.version>2.3.28</freemarker.version>
     <mustache.version>0.9.5</mustache.version>
     <tomcat.version>9.0.12</tomcat.version>
+    <glassfish.version>5.0</glassfish.version>
     <struts.version>2.5.18</struts.version>
     <tiles.version>3.0.8</tiles.version>
     <primefaces.version>6.2</primefaces.version>
@@ -469,24 +470,25 @@
         <configuration>
           <container>
             <containerId>glassfish5x</containerId>
-            <type>installed</type>
-            <!-- Path to directory where glassfish is installed -->
-            <home>${glassfish.location}</home>
+            <type>remote</type>
           </container>
           <configuration>
-            <type>existing</type>
-            <!-- Path to domains directory -->
-            <home>${glassfish.location}/glassfish/domains</home>
+            <type>runtime</type>
             <properties>
-              <!-- Domain name where application will be deployed. -->
-              <cargo.glassfish.domain.name>domain1</cargo.glassfish.domain.name>
-              <!-- Glassfish user to authenticate -->
+              <cargo.hostname>VitrHome</cargo.hostname>
+              <cargo.glassfish.admin.port>4848</cargo.glassfish.admin.port>
               <cargo.remote.username>admin</cargo.remote.username>
-              <!-- Glassfish password to authenticate -->
               <cargo.remote.password></cargo.remote.password>
             </properties>
           </configuration>
         </configuration>
+        <dependencies>
+          <dependency>
+            <groupId>org.glassfish.main.deployment</groupId>
+            <artifactId>deployment</artifactId>
+            <version>${glassfish.version}</version>
+          </dependency>
+        </dependencies>
       </plugin>
 
       <!--Minify Maven Plugin-->
