@@ -1,0 +1,8 @@
+version: "3"
+services:
+    web:
+        image: vitr/otusjavaee
+        ports:
+            - "4848:4848"
+            - "8080:8080"
+            - "8181:8181"
