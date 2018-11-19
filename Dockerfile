@@ -16,8 +16,4 @@ FROM airhacks/glassfish:v5
 
 COPY lib/ojdbc6-11.2.0.4.jar $GLASSFISH_HOME/lib/ojdbc6-11.2.0.4.jar
 COPY config/domain.xml $GLASSFISH_HOME/domains/domain1/config/domain.xml
-
 COPY target/JavaEE.war $DEPLOYMENT_DIR/JavaEE.war
-
-#FROM payara/server-full
-#COPY target/JavaEE.war $AUTODEPLOY_DIR/JavaEE.war
