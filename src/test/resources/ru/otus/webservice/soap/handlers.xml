@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<handler-chains xmlns="http://java.sun.com/xml/ns/javaee">
+    <handler-chain>
+        <handler>
+            <handler-name>ru.otus.webservice.soap.handler.CalculatorHandler</handler-name>
+            <handler-class>ru.otus.webservice.soap.handler.CalculatorHandler</handler-class>
+        </handler>
+    </handler-chain>
+</handler-chains>
