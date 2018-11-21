@@ -2,13 +2,10 @@ package ru.otus.webservice.soap;
 
 import ru.otus.webservice.soap.server.Calculator;
 
-import javax.jws.WebMethod;
-import javax.jws.WebParam;
-import javax.jws.WebResult;
-import javax.jws.WebService;
+import javax.jws.*;
 
 @WebService
-//@HandlerChain(file = "handlers.xml")
+@HandlerChain(file = "handlers.xml")
 public class CalculatorImpl implements Calculator {
 
     /**
