@@ -29,7 +29,7 @@ public class DateWebServiceServlet extends HttpServlet {
             out.println("<title>WebServiceRef Test</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Title= " + currentDate + "</h1>");
+            out.println("<h1>CurrentDate: " + currentDate + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }

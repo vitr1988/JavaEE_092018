@@ -28,12 +28,12 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "getCurrentDateResponse", propOrder = {
-    "_return"
+        "currentDate"
 })
 public class GetCurrentDateResponse {
 
-    @XmlElement(name = "return")
-    protected String _return;
+    @XmlElement(name = "currentDate")
+    protected String currentDate;
 
     /**
      * Gets the value of the return property.
@@ -43,8 +43,8 @@ public class GetCurrentDateResponse {
      *     {@link String }
      *
      */
-    public String getReturn() {
-        return _return;
+    public String getCurrentDate() {
+        return currentDate;
     }
 
     /**
@@ -55,8 +55,8 @@ public class GetCurrentDateResponse {
      *     {@link String }
      *
      */
-    public void setReturn(String value) {
-        this._return = value;
+    public void setCurrentDate(String value) {
+        this.currentDate = value;
     }
 
 
