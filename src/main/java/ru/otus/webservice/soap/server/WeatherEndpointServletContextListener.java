@@ -9,8 +9,12 @@ import javax.xml.ws.Endpoint;
 public class WeatherEndpointServletContextListener implements ServletContextListener {
     @Override
     public void contextInitialized(ServletContextEvent sce) {
-        Endpoint.publish(
-                "http://localhost:8700" + sce.getServletContext().getContextPath() + "/weather",
-                new WeatherServiceAsRestfulSimulator());
+        try {
+            String webServiceUrl = "http://localhost:8700" + sce.getServletContext().getContextPath() + "/weather";
+            Endpoint.publish(webServiceUrl, new WeatherServiceAsRestfulSimulator());
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
     }
 }

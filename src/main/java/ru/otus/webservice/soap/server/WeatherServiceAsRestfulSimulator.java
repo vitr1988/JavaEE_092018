@@ -23,6 +23,7 @@ public class WeatherServiceAsRestfulSimulator implements Provider<Source> {
 
     private static final String WEATHER_URL = "http://api.openweathermap.org/data/2.5/weather?appid=%s&mode=xml&q=%s";
     private static final String GET_HTTP_METHOD = "GET";
+    private static final String CITY_REQUEST_PARAMETER_NAME = "city";
     private static final String USER_AGENT_HEADER = "User-Agent";
 
     @Resource
@@ -41,7 +42,10 @@ public class WeatherServiceAsRestfulSimulator implements Provider<Source> {
     private Source doGet(MessageContext msg_cxt) {
         String query_string = (String) msg_cxt.get(QUERY_STRING);
         StringBuffer text = new StringBuffer("");
-        String city = query_string.split("=")[1];
+        String[] queryStringParts = query_string.split("=");
+        if (!CITY_REQUEST_PARAMETER_NAME.equalsIgnoreCase(queryStringParts[0])) return null;
+
+        String city = queryStringParts[1];
         try {
             URL url = new URL(String.format(WEATHER_URL, "3d58903046050728d7b36ce11b3ce32d", city));
             HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
