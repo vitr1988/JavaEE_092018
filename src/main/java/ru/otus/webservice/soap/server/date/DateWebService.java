@@ -6,6 +6,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 @WebService(serviceName = "DateWebService", name = "DateProvider")
+//@SOAPBinding(style = SOAPBinding.Style.RPC)
 public class DateWebService implements DateProvider {
 
     DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
