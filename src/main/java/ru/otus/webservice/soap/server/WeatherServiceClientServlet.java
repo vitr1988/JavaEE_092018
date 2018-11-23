@@ -18,6 +18,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.Scanner;
 
 @WebServlet(name = "WeatherServiceClientServlet", urlPatterns = "/weatherClient")
 public class WeatherServiceClientServlet extends HttpServlet {
@@ -26,12 +27,16 @@ public class WeatherServiceClientServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // GET requests
         URL url = new URL(request.getScheme() + "://" + request.getServerName() + ":8700"
-                + request.getContextPath()+ "/weather?city=Самара");
+                + request.getContextPath()+ "/weather?city=Samara");
         HttpURLConnection conn = (HttpURLConnection) url.openConnection();
         conn.setRequestMethod("GET");
         conn.connect();
-        String xml = IOUtils.toString(conn.getInputStream());
-        try {
+        StringBuffer xmlBuffer = new StringBuffer();
+        try (Scanner scanner = new Scanner(conn.getInputStream())){
+            while (scanner.hasNextLine()) {
+                xmlBuffer.append(scanner.nextLine());
+            }
+            String xml = xmlBuffer.toString();
             SAXParser parser = SAXParserFactory.newInstance().newSAXParser();
             SaxParserHandler handler = new SaxParserHandler();
             parser.parse(new ByteArrayInputStream(xml.getBytes()), handler);
