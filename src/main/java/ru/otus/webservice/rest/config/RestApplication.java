@@ -45,5 +45,4 @@ public class RestApplication extends ResourceConfig {
     private void registerValidationClasses() {
         register(ValidationFeature.class);
     }
-
 }

@@ -1,12 +1,32 @@
 package ru.otus.webservice.rest;
 
 import javax.ws.rs.*;
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
+import javax.ws.rs.core.*;
+import javax.ws.rs.ext.Providers;
 
 @Path("/calculator")
 @Produces(MediaType.TEXT_PLAIN)
 public class CalculatorImpl implements Calculator {
+
+    @Context
+    Application app; // provides access to application configuration information.
+
+    @Context
+    UriInfo uri; // provides access to application and request URI information.
+
+    @Context
+    HttpHeaders headers; // provides access to HTTP header information either as a Map or as convenience methods.
+    // Note that @HeaderParam can also be used to bind an HTTP header to a resource method parameter,
+    // field, or bean property.
+
+    @Context
+    Request request; // provides a helper to request processing and is typically used with Response to dynamically build the response.
+
+    @Context
+    SecurityContext security; // provides access to security-related information about the current request.
+
+    @Context
+    Providers providers; // supplies information about runtime lookup of provider instances based on a set of search criteria.
 
     @GET
     @Path("/sqrt/{value}")
