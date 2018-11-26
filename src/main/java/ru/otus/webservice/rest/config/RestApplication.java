@@ -7,6 +7,7 @@ import org.glassfish.jersey.server.ResourceConfig;
 import org.glassfish.jersey.server.validation.ValidationFeature;
 import ru.otus.webservice.rest.CalculatorImpl;
 import ru.otus.webservice.rest.exception.RuntimeExceptionMapper;
+import ru.otus.webservice.rest.filter.CorsFilter;
 
 import javax.ws.rs.ApplicationPath;
 import java.nio.charset.StandardCharsets;
@@ -24,6 +25,7 @@ public class RestApplication extends ResourceConfig {
         registerResourceClasses();
         registerExceptionMapperClasses();
         registerValidationClasses();
+        registerFilterClasses();
 
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
@@ -44,5 +46,9 @@ public class RestApplication extends ResourceConfig {
 
     private void registerValidationClasses() {
         register(ValidationFeature.class);
+    }
+
+    private void registerFilterClasses() {
+        register(CorsFilter.class);
     }
 }
