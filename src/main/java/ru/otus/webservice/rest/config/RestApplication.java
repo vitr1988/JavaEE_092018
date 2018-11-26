@@ -6,6 +6,7 @@ import org.glassfish.jersey.jackson.internal.jackson.jaxrs.json.JacksonJaxbJsonP
 import org.glassfish.jersey.server.ResourceConfig;
 import org.glassfish.jersey.server.validation.ValidationFeature;
 import ru.otus.webservice.rest.CalculatorImpl;
+import ru.otus.webservice.rest.UserResource;
 import ru.otus.webservice.rest.exception.RuntimeExceptionMapper;
 import ru.otus.webservice.rest.filter.CorsFilter;
 
@@ -38,6 +39,7 @@ public class RestApplication extends ResourceConfig {
 
     private void registerResourceClasses() {
         register(CalculatorImpl.class);
+        register(UserResource.class);
     }
 
     private void registerExceptionMapperClasses() {

@@ -1,6 +1,7 @@
 package ru.otus.webservice.rest;
 
 import javax.ws.rs.*;
+import javax.ws.rs.container.ResourceInfo;
 import javax.ws.rs.core.*;
 import javax.ws.rs.ext.Providers;
 
@@ -28,16 +29,22 @@ public class CalculatorImpl implements Calculator {
     @Context
     Providers providers; // supplies information about runtime lookup of provider instances based on a set of search criteria.
 
+    @Context
+    ResourceInfo resourceInfo; // supplies info about current resource
+
     @GET
-    @Path("/sqrt/{value}")
+//    @Path("/sqrt/{value}")
+    @Path("/sqrt")
+    @Produces(MediaType.APPLICATION_JSON)
     @Override
-    public double calcSqrt(@PathParam("value") double value) {
+    public double calcSqrt(/*@PathParam("value")*/@QueryParam("value") double value) {
         return Math.sqrt(value);
     }
 
     @GET
     @Path("/plus/{value1}/{value2}")
     @Override
+//    @RolesAllowed({ANONYMOUS, CLIENT})
     public double calcAddTwoValues(@PathParam("value1") double value1, @PathParam("value2") double value2) {
         return value1 + value2;
     }
@@ -59,5 +66,12 @@ public class CalculatorImpl implements Calculator {
                             .entity("Div by 0 is prohibited").type(MediaType.TEXT_PLAIN).build());
         }
         return value1 / value2;
+    }
+
+    @GET
+    @Path("/mult/{value1}/{value2}")
+    public Response calcMultiplyValues(@PathParam("value1") double value1, @PathParam("value2") double value2) {
+        double result = value1 * value2;
+        return Response.status(201).type(MediaType.APPLICATION_JSON_TYPE).entity(result).build();
     }
 }
