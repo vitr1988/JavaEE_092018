@@ -1,5 +1,9 @@
 package ru.otus.webservice.rest;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.SwaggerDefinition;
+import io.swagger.annotations.Tag;
+
 import javax.ws.rs.*;
 import javax.ws.rs.container.ResourceInfo;
 import javax.ws.rs.core.*;
@@ -7,6 +11,10 @@ import javax.ws.rs.ext.Providers;
 
 @Path("/calculator")
 @Produces(MediaType.TEXT_PLAIN)
+@Api(tags = "Calculator")
+@SwaggerDefinition(tags = {
+    @Tag(name = "Calculator", description = "RESTful API to manage with calculation.")
+})
 public class CalculatorImpl implements Calculator {
 
     @Context
