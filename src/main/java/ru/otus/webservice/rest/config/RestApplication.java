@@ -71,15 +71,16 @@ public class RestApplication extends ResourceConfig {
     }
 
     public void publishSwaggerDescription(){
-        //SwaggerUI http://localhost:8080/api-doc
-        BeanConfig beanConfig = new BeanConfig();
-        beanConfig.setTitle("Swagger JAX-RS Integration Example");
-        beanConfig.setDescription("A simple Maven JAX-RS project.");
-        beanConfig.setVersion("1.0.0");
-        beanConfig.setSchemes(new String[]{DEFAULT_SCHEME_NAME});
-        beanConfig.setBasePath(API_URL);
-        beanConfig.setResourcePackage(RESOURCE_PACKAGE);
-        beanConfig.setPrettyPrint(true);
-        beanConfig.setScan(true);
+        //SwaggerUI http://localhost:8080/api-docs
+        //Tomcat suitable approach swagger declaration
+//        BeanConfig beanConfig = new BeanConfig();
+//        beanConfig.setTitle("Swagger JAX-RS Integration Example");
+//        beanConfig.setDescription("A simple Maven JAX-RS project.");
+//        beanConfig.setVersion("1.0.0");
+//        beanConfig.setSchemes(new String[]{DEFAULT_SCHEME_NAME});
+//        beanConfig.setBasePath(API_URL);
+//        beanConfig.setResourcePackage(RESOURCE_PACKAGE);
+//        beanConfig.setPrettyPrint(true);
+//        beanConfig.setScan(true);
     }
 }

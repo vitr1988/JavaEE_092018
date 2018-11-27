@@ -309,7 +309,6 @@
       </exclusions>
     </dependency>
 
-    <!-- Jersey -->
     <!-- Jersey 2.27 -->
     <dependency>
       <groupId>org.glassfish.jersey.containers</groupId>
@@ -434,6 +433,7 @@
       <version>${websocket.client.version}</version>
       <scope>test</scope>
     </dependency>
+
     <dependency>
       <groupId>io.swagger</groupId>
       <artifactId>swagger-jersey2-jaxrs</artifactId>

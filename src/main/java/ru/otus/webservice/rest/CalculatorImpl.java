@@ -1,6 +1,7 @@
 package ru.otus.webservice.rest;
 
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiParam;
 import io.swagger.annotations.SwaggerDefinition;
 import io.swagger.annotations.Tag;
 
@@ -45,7 +46,9 @@ public class CalculatorImpl implements Calculator {
     @Path("/sqrt")
     @Produces(MediaType.APPLICATION_JSON)
     @Override
-    public double calcSqrt(/*@PathParam("value")*/@QueryParam("value") double value) {
+    public double calcSqrt(/*@PathParam("value")*/
+            @ApiParam(value = "value for calculation sqrt", required = true)
+            @QueryParam("value") double value) {
         return Math.sqrt(value);
     }
 
@@ -53,21 +56,33 @@ public class CalculatorImpl implements Calculator {
     @Path("/plus/{value1}/{value2}")
     @Override
 //    @RolesAllowed({ANONYMOUS, CLIENT})
-    public double calcAddTwoValues(@PathParam("value1") double value1, @PathParam("value2") double value2) {
+    public double calcAddTwoValues(
+            @ApiParam(value = "value1 for adding", required = true)
+            @PathParam("value1") double value1,
+            @ApiParam(value = "value2 for adding", required = true)
+            @PathParam("value2") double value2) {
         return value1 + value2;
     }
 
     @GET
     @Path("/minus/{value1}/{value2}")
     @Override
-    public double calcSubTwoValues(@PathParam("value1") double value1, @PathParam("value2") double value2) {
+    public double calcSubTwoValues(
+            @ApiParam(value = "value1 for subtraction", required = true)
+            @PathParam("value1") double value1,
+            @ApiParam(value = "value2 for subtraction", required = true)
+            @PathParam("value2") double value2) {
         return value1 - value2;
     }
 
     @GET
     @Path("/div/{value1}/{value2}")
     @Override
-    public double calcDivTwoValues(@PathParam("value1") double value1, @PathParam("value2") double value2) {
+    public double calcDivTwoValues(
+            @ApiParam(value = "value1 for division", required = true)
+            @PathParam("value1") double value1,
+            @ApiParam(value = "value2 for division", required = true)
+            @PathParam("value2") double value2) {
         if (value2 == 0){
             throw new WebApplicationException(
                     Response.status(Response.Status.BAD_REQUEST)
@@ -78,7 +93,11 @@ public class CalculatorImpl implements Calculator {
 
     @GET
     @Path("/mult/{value1}/{value2}")
-    public Response calcMultiplyValues(@PathParam("value1") double value1, @PathParam("value2") double value2) {
+    public Response calcMultiplyValues(
+            @ApiParam(value = "value1 for multiplying", required = true)
+            @PathParam("value1") double value1,
+            @ApiParam(value = "value2 for multiplying", required = true)
+            @PathParam("value2") double value2) {
         double result = value1 * value2;
         return Response.status(201).type(MediaType.APPLICATION_JSON_TYPE).entity(result).build();
     }
