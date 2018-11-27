@@ -6,18 +6,18 @@ import lombok.experimental.FieldNameConstants;
 import javax.ws.rs.QueryParam;
 
 @Data
-@FieldNameConstants(prefix = "")
+@FieldNameConstants
 public class User {
 
-    @QueryParam(ID)
+    @QueryParam(FIELD_ID)
     private long id;
 
-    @QueryParam(LOGIN)
+    @QueryParam(FIELD_LOGIN)
     private String login;
 
-    @QueryParam(FIO)
+    @QueryParam(FIELD_FIO)
     private String fio;
 
-    @QueryParam(AGE)
+    @QueryParam(FIELD_AGE)
     private int age;
 }
