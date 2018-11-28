@@ -1,5 +1,9 @@
 package ru.otus.webservice.rest;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.SwaggerDefinition;
+import io.swagger.annotations.Tag;
 import org.apache.log4j.Logger;
 import ru.otus.webservice.rest.model.Report;
 
@@ -24,6 +28,10 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 @Path("reports")
+@Api(tags = "Reports")
+@SwaggerDefinition(tags = {
+        @Tag(name = "Reports", description = "RESTful API to manage with reports.")
+})
 public class ReportResource {
 
     private static final Logger logger = Logger.getLogger(ReportResource.class.getName());
@@ -39,6 +47,7 @@ public class ReportResource {
 
     @GET
     @Path("/{id}")
+    @ApiOperation("Get report by id")
     public void getReportDescription(@PathParam("id") int id, @Suspended AsyncResponse async) {
         async.setTimeout(2000, TimeUnit.MILLISECONDS);
         async.setTimeoutHandler(new CancelTimeoutHandlerImpl());
@@ -64,6 +73,7 @@ public class ReportResource {
 
     @GET
     @Path("/all")
+    @ApiOperation("Get all reports")
     public void getAll(@Suspended final AsyncResponse ar) {
         ar.register(new CompletionCallbackImpl());
         ar.setTimeout(6000, TimeUnit.MILLISECONDS);
