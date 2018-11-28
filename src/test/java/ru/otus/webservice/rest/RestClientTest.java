@@ -21,16 +21,16 @@ public class RestClientTest {
     public static void init() {
         ClientConfig config = new ClientConfig();
         client = ClientBuilder.newClient(config);
-//        client.register(ClientLoggingFilter.class);
+        client.register(ClientLoggingFilter.class);
     }
 
     @Test
     public void testSqrt() throws Exception {
         WebTarget target = client.target(getBaseURI()).path("api").
                 path("calculator").
-                path("sqrt").
-                path("{value}").
-                resolveTemplate("value", 25);
+                path("{operation}").
+                queryParam("value", 25).
+                resolveTemplate("operation", "sqrt");
         // synchronous fetching data
         final Invocation.Builder invocationBuilder = target.request().accept(MediaType.APPLICATION_JSON);
         double response = invocationBuilder.get(Double.class);

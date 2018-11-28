@@ -38,7 +38,6 @@
     <gin.version>2.1.2</gin.version>
     <hibernate-validator.version>4.1.0.Final</hibernate-validator.version>
     <jersey.version>2.27</jersey.version>
-    <fasterxml.version>2.8.11</fasterxml.version>
     <jstl.version>1.2.1</jstl.version>
     <freemarker.version>2.3.28</freemarker.version>
     <mustache.version>0.9.5</mustache.version>
@@ -189,7 +188,6 @@
       <artifactId>jackson-dataformat-yaml</artifactId>
       <version>${jackson.version}</version>
     </dependency>
-
     <dependency>
       <groupId>com.fasterxml.jackson.core</groupId>
       <artifactId>jackson-databind</artifactId>
@@ -242,17 +240,14 @@
     <dependency>
       <groupId>com.google.gwt</groupId>
       <artifactId>gwt-user</artifactId>
-      <!--<scope>provided</scope>-->
     </dependency>
     <dependency>
       <groupId>com.google.gwt</groupId>
       <artifactId>gwt-dev</artifactId>
-      <!--<scope>provided</scope>-->
     </dependency>
     <dependency>
       <groupId>com.google.gwt</groupId>
       <artifactId>gwt-codeserver</artifactId>
-      <!--<scope>provided</scope>-->
     </dependency>
     <dependency>
       <groupId>com.google.gwt</groupId>
@@ -348,17 +343,12 @@
     <dependency>
       <groupId>com.fasterxml.jackson.core</groupId>
       <artifactId>jackson-annotations</artifactId>
-      <version>${fasterxml.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>com.fasterxml.jackson.core</groupId>
-      <artifactId>jackson-databind</artifactId>
-      <version>${fasterxml.version}</version>
+      <version>${jackson.version}</version>
     </dependency>
     <dependency>
       <groupId>com.fasterxml.jackson.module</groupId>
       <artifactId>jackson-module-jaxb-annotations</artifactId>
-      <version>${fasterxml.version}</version>
+      <version>${jackson.version}</version>
     </dependency>
     <!-- JSTL -->
     <dependency>
