@@ -5,6 +5,7 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.SwaggerDefinition;
 import io.swagger.annotations.Tag;
 import org.apache.log4j.Logger;
+import org.glassfish.jersey.server.Uri;
 import ru.otus.webservice.rest.model.Report;
 
 import javax.annotation.Resource;
@@ -13,6 +14,7 @@ import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.container.AsyncResponse;
 import javax.ws.rs.container.CompletionCallback;
 import javax.ws.rs.container.Suspended;
@@ -39,8 +41,11 @@ public class ReportResource {
     @Resource
     private ManagedScheduledExecutorService executor;
 
+    @Uri("/calculator/{operationType}")
+    WebTarget calculatorTarget;
+
     // all reports
-    List<Report> reports = Arrays.asList(
+    final List<Report> reports = Arrays.asList(
             new Report(1, "Annual report", "This is report which is conducted every year")
             , new Report(2, "Monthly report", "This is report which is conducted every month")
     );
@@ -66,7 +71,7 @@ public class ReportResource {
             // and send the 'reportdata' object as the response
             async.resume(
                 report == null ?
-                    Response.ok("Noting to show:(", MediaType.TEXT_PLAIN).build() :
+                    Response.ok("Nothing to show:(", MediaType.TEXT_PLAIN).build() :
                         Response.ok(report, MediaType.APPLICATION_JSON_TYPE).build());
         });
     }
@@ -89,12 +94,15 @@ public class ReportResource {
 
     @GET
     @Produces(MediaType.SERVER_SENT_EVENTS)
+    @ApiOperation("Server sent events for reporting")
     public void reportComplete(
             @Context SseEventSink eventSink,
             @Context Sse sse) {
         try (SseEventSink sink = eventSink) {
-            sink.send(sse.newEvent("Report is Generating"));
-            sink.send(sse.newEvent("Report is still Generating", "Some data"));
+            Double response = calculatorTarget.resolveTemplate("operationType", "plus").path("19").path("60").request().get(Double.class);
+            sink.send(sse.newEvent("Report is generating"));
+            sink.send(sse.newEvent("Report is still generating", "Some data"));
+            sink.send(sse.newEvent("Report has been generating during " + response + " seconds"));
             OutboundSseEvent event = sse.newEventBuilder().
                     id("ReportId").
                     name("Account Report").

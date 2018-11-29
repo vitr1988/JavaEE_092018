@@ -10,8 +10,8 @@ import javax.ws.rs.core.Response;
 @Path("user")
 @SwaggerDefinition(
         info = @Info(
-                title = "User Resource Swagger-generated API",
-                description = "User Resource Description example",
+                title = "Swagger-generated RESTful API",
+                description = "RESTful Description example",
                 version = "1.0.0",
                 termsOfService = "share and care",
                 contact = @Contact(

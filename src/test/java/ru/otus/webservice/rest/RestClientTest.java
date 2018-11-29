@@ -8,6 +8,7 @@ import ru.otus.webservice.rest.filter.client.ClientLoggingFilter;
 
 import javax.ws.rs.client.*;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriBuilder;
 import java.net.URI;
 import java.util.concurrent.CompletionStage;
@@ -28,12 +29,14 @@ public class RestClientTest {
     public void testSqrt() throws Exception {
         WebTarget target = client.target(getBaseURI()).path("api").
                 path("calculator").
+//                path(CalculatorImpl.class).
                 path("{operation}").
                 queryParam("value", 25).
                 resolveTemplate("operation", "sqrt");
         // synchronous fetching data
         final Invocation.Builder invocationBuilder = target.request().accept(MediaType.APPLICATION_JSON);
         double response = invocationBuilder.get(Double.class);
+        Response response1 = invocationBuilder.get();
         Assert.assertEquals(5, response, 0);
 
         // asynchronous
@@ -52,7 +55,7 @@ public class RestClientTest {
         csf.thenAccept(System.out::println);
 
         Invocation i1 = target.request().buildGet();
-        Assert.assertEquals(5, invocationBuilder.get().readEntity(Double.class), 0);
+        Assert.assertEquals(5, response1.readEntity(Double.class), 0);
         Assert.assertEquals(5, result.get(), 0);
         Assert.assertEquals(5, i1.invoke(Double.class), 0);
     }
