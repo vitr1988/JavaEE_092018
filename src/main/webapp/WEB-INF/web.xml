@@ -15,16 +15,6 @@
     <param-value>123</param-value>
   </context-param>
 
-  <servlet>
-    <servlet-name>ApplicationService</servlet-name>
-    <servlet-class>ru.otus.gwt.server.ApplicationServiceImpl</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>ApplicationService</servlet-name>
-    <url-pattern>/Application/ApplicationService</url-pattern>
-    <url-pattern>/Application/contactService</url-pattern>
-  </servlet-mapping>
-
   <resource-ref>
     <description>DB Connection</description>
     <res-ref-name>jdbc/OracleDS</res-ref-name>
@@ -92,84 +82,6 @@
     <url-pattern>/today.do</url-pattern>
   </servlet-mapping>
 
-  <servlet>
-    <servlet-name>freemarker</servlet-name>
-    <servlet-class>freemarker.ext.servlet.FreemarkerServlet</servlet-class>
-    <!--
-      Init-param documentation:
-      https://freemarker.apache.org/docs/api/freemarker/ext/servlet/FreemarkerServlet.html
-    -->
-    <!-- FreemarkerServlet settings: -->
-    <init-param>
-      <param-name>TemplatePath</param-name>
-      <param-value>/</param-value>
-    </init-param>
-    <init-param>
-      <param-name>NoCache</param-name>
-      <param-value>true</param-value>
-    </init-param>
-    <init-param>
-      <param-name>ExceptionOnMissingTemplate</param-name>
-      <!-- true => HTTP 500 on missing template, instead of HTTP 404. -->
-      <param-value>true</param-value>
-    </init-param>
-
-    <!-- FreeMarker engine settings: -->
-    <init-param>
-      <param-name>incompatible_improvements</param-name>
-      <param-value>2.3.23</param-value>
-    </init-param>
-    <init-param>
-      <param-name>template_exception_handler</param-name>
-      <!-- Use "html_debug" during development! -->
-      <param-value>rethrow</param-value>
-    </init-param>
-    <init-param>
-      <param-name>template_update_delay</param-name>
-      <!-- Use 0 during development! Consider what value you need otherwise. -->
-      <param-value>30 s</param-value>
-    </init-param>
-    <init-param>
-      <param-name>default_encoding</param-name>
-      <!-- The encoding of the template files: -->
-      <param-value>UTF-8</param-value>
-    </init-param>
-    <init-param>
-      <param-name>output_encoding</param-name>
-      <!-- The encoding of the template output; Note that you must set
-           "ResponseCharacterEncodring" to "fromTemplate" for this to work! -->
-      <param-value>UTF-8</param-value>
-    </init-param>
-    <init-param>
-      <param-name>locale</param-name>
-      <!-- Influences number and date/time formatting, etc. -->
-      <param-value>ru_RU</param-value>
-    </init-param>
-    <init-param>
-      <param-name>number_format</param-name>
-      <param-value>0.##########</param-value>
-    </init-param>
-
-    <load-on-startup>1</load-on-startup>
-  </servlet>
-
-  <servlet-mapping>
-    <servlet-name>freemarker</servlet-name>
-    <url-pattern>*.ftl</url-pattern>
-    <!-- HTML and XML auto-escaped if incompatible_improvements >= 2.3.24: -->
-    <url-pattern>*.ftlh</url-pattern>
-    <url-pattern>*.ftlx</url-pattern>
-  </servlet-mapping>
-
-  <filter>
-    <filter-name>struts2</filter-name>
-    <filter-class>org.apache.struts2.dispatcher.filter.StrutsPrepareAndExecuteFilter</filter-class>
-  </filter>
-  <filter-mapping>
-    <filter-name>struts2</filter-name>
-    <url-pattern>*.action</url-pattern>
-  </filter-mapping>
-
   <context-param>
       <param-name>javax.faces.PROJECT_STAGE</param-name>
       <param-value>Development</param-value>
@@ -198,26 +110,4 @@
     <param-value>http://localhost:8080/JavaEE/</param-value>
   </context-param>
 
-  <!--<servlet>
-    <servlet-name>Jersey REST Service</servlet-name>
-    <servlet-class>org.glassfish.jersey.servlet.ServletContainer</servlet-class>
-    &lt;!&ndash; Register resources and providers under package. &ndash;&gt;
-    <init-param>
-      <param-name>jersey.config.server.provider.packages</param-name>
-      <param-value>ru.otus.webservice.rest</param-value>
-    </init-param>
-    <load-on-startup>1</load-on-startup>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>Jersey REST Service</servlet-name>
-    <url-pattern>/api/*</url-pattern>
-  </servlet-mapping>-->
-  <servlet>
-    <servlet-name>ApiDocs</servlet-name>
-    <jsp-file>/WEB-INF/api-docs.jsp</jsp-file>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>ApiDocs</servlet-name>
-    <url-pattern>/api-docs</url-pattern>
-  </servlet-mapping>
 </web-app>

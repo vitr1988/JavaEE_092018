@@ -1,4 +1,7 @@
-package ru.otus.ejb.session.stateless;
+package ru.otus.ejb.session;
+
+import ru.otus.ejb.session.stateful.AnotherSimpleBean;
+import ru.otus.ejb.session.stateless.ApplicationSimpleBean;
 
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
@@ -14,9 +17,13 @@ public class EJBServlet extends HttpServlet {
     @EJB
     ApplicationSimpleBean bean;
 
+    @EJB
+    AnotherSimpleBean anotherBean;
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         bean.doSomething();
         response.getWriter().println(bean.saySmth());
+        response.getWriter().println(anotherBean.incrementLastValue(25));
     }
 }

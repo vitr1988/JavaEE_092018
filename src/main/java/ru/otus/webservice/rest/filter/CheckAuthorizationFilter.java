@@ -1,7 +1,5 @@
 package ru.otus.webservice.rest.filter;
 
-import org.apache.commons.io.IOUtils;
-
 import javax.annotation.Priority;
 import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.Priorities;
@@ -14,10 +12,8 @@ import javax.ws.rs.core.SecurityContext;
 import javax.ws.rs.core.UriInfo;
 import javax.ws.rs.ext.Provider;
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
 import java.security.Principal;
 import java.util.Objects;
-import java.util.stream.Collectors;
 
 @Provider
 @PreMatching

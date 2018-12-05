@@ -1,7 +1,5 @@
 package ru.otus.servlet;
 
-import org.apache.tools.ant.filters.StringInputStream;
-
 import javax.servlet.AsyncContext;
 import javax.servlet.ServletException;
 import javax.servlet.ServletOutputStream;
@@ -16,9 +14,6 @@ import java.io.PrintWriter;
 import java.text.MessageFormat;
 import java.util.Objects;
 import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
 
 @WebServlet(name = "AsyncServlet", urlPatterns = "/async", asyncSupported = true)
 public class AsyncServlet extends HttpServlet {

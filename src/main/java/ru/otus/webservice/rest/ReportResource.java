@@ -1,11 +1,6 @@
 package ru.otus.webservice.rest;
 
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.SwaggerDefinition;
-import io.swagger.annotations.Tag;
 import org.apache.log4j.Logger;
-import org.glassfish.jersey.server.Uri;
 import ru.otus.webservice.rest.model.Report;
 
 import javax.annotation.Resource;
@@ -30,10 +25,6 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 @Path("reports")
-@Api(tags = "Reports")
-@SwaggerDefinition(tags = {
-        @Tag(name = "Reports", description = "RESTful API to manage with reports.")
-})
 public class ReportResource {
 
     private static final Logger logger = Logger.getLogger(ReportResource.class.getName());
@@ -41,7 +32,6 @@ public class ReportResource {
     @Resource
     private ManagedScheduledExecutorService executor;
 
-    @Uri("/calculator/{operationType}")
     WebTarget calculatorTarget;
 
     // all reports
@@ -52,7 +42,6 @@ public class ReportResource {
 
     @GET
     @Path("/{id}")
-    @ApiOperation("Get report by id")
     public void getReportDescription(@PathParam("id") int id, @Suspended AsyncResponse async) {
         async.setTimeout(2000, TimeUnit.MILLISECONDS);
         async.setTimeoutHandler(new CancelTimeoutHandlerImpl());
@@ -78,7 +67,6 @@ public class ReportResource {
 
     @GET
     @Path("/all")
-    @ApiOperation("Get all reports")
     public void getAll(@Suspended final AsyncResponse ar) {
         ar.register(new CompletionCallbackImpl());
         ar.setTimeout(6000, TimeUnit.MILLISECONDS);
@@ -94,7 +82,6 @@ public class ReportResource {
 
     @GET
     @Produces(MediaType.SERVER_SENT_EVENTS)
-    @ApiOperation("Server sent events for reporting")
     public void reportComplete(
             @Context SseEventSink eventSink,
             @Context Sse sse) {

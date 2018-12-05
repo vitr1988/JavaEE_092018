@@ -1,6 +1,5 @@
 package ru.otus.webservice.rest;
 
-import org.glassfish.jersey.client.ClientConfig;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -20,8 +19,7 @@ public class RestClientTest {
 
     @BeforeClass
     public static void init() {
-        ClientConfig config = new ClientConfig();
-        client = ClientBuilder.newClient(config);
+        client = ClientBuilder.newClient();
         client.register(ClientLoggingFilter.class);
     }
 

@@ -1,6 +1,5 @@
 package ru.otus.webservice.soap.server;
 
-import org.apache.commons.io.IOUtils;
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;

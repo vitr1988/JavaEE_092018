@@ -1,7 +1,6 @@
 package ru.otus.json.demo;
 
 import org.apache.log4j.Logger;
-import org.json.XML;
 import ru.otus.json.util.Util;
 import ru.otus.xml.model.DeptEntity;
 import ru.otus.xml.model.EmpEntity;
@@ -40,9 +39,9 @@ public class XML2JSONServlet extends HttpServlet {
         String xmlString = Util.marshal(employee);
         logger.info("XML content : " + xmlString);
 
-        resp.setHeader("Content-type", "application/json");
+        resp.setHeader("Content-type", "application/xml");
         try(PrintWriter pw = resp.getWriter()){
-            pw.println(XML.toJSONObject(xmlString));
+            pw.println(xmlString);
         }
     }
 }
