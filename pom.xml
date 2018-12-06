@@ -28,6 +28,7 @@
     <glassfish.version>5.0</glassfish.version>
     <websocket.version>1.1</websocket.version>
     <websocket.client.version>1.12</websocket.client.version>
+    <jersey.version>2.27</jersey.version>
 
     <glassfish.location>C:/JavaEE/glassfish5</glassfish.location>
 
@@ -283,10 +284,40 @@
     </dependency>
 
     <dependency>
+      <groupId>org.glassfish.jersey.core</groupId>
+      <artifactId>jersey-client</artifactId>
+      <version>${jersey.version}</version>
+      <scope>test</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>org.glassfish.jersey.inject</groupId>
+      <artifactId>jersey-hk2</artifactId>
+      <version>${jersey.version}</version>
+      <scope>test</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>org.glassfish.jersey.bundles.repackaged</groupId>
+      <artifactId>jersey-guava</artifactId>
+      <version>2.26-b03</version>
+      <scope>test</scope>
+    </dependency>
+
+
+    <dependency>
       <groupId>org.eclipse.jetty</groupId>
       <artifactId>jetty-servlet</artifactId>
       <version>${jetty.servlet.tester.version}</version>
       <scope>test</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>org.glassfish.main.appclient.client</groupId>
+      <artifactId>gf-client</artifactId>
+      <version>5.0</version>
+      <scope>system</scope>
+      <systemPath>C:/JavaEE/glassfish5/glassfish/lib/gf-client.jar</systemPath>
     </dependency>
 
     <!-- This dependency should specify at last -->
