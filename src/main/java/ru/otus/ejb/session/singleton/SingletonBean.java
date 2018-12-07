@@ -1,8 +1,8 @@
 package ru.otus.ejb.session.singleton;
 
-import javax.ejb.Local;
+import javax.ejb.Remote;
 
-@Local
+@Remote
 public interface SingletonBean {
     void put(Long key, String name);
     String get(Long key);
