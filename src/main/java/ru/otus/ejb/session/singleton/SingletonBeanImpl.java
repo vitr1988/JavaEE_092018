@@ -2,10 +2,7 @@ package ru.otus.ejb.session.singleton;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
-import javax.ejb.Schedule;
-import javax.ejb.Singleton;
-import javax.ejb.Startup;
-import javax.ejb.Timer;
+import javax.ejb.*;
 import javax.interceptor.AroundTimeout;
 import javax.interceptor.InvocationContext;
 import java.util.Map;
@@ -13,6 +10,8 @@ import java.util.concurrent.ConcurrentHashMap;
 
 @Singleton
 @Startup
+//@DependsOn()
+@ConcurrencyManagement(value = ConcurrencyManagementType.BEAN)
 public class SingletonBeanImpl implements SingletonBean {
 
     private Map<Long, String> map;
@@ -26,11 +25,13 @@ public class SingletonBeanImpl implements SingletonBean {
 //        timerService.createTimer(0,1000, "Every second timer with no delay");
     }
 
+//    @Lock(LockType.WRITE)
     @Override
     public void put(Long key, String name){
         map.put(key, name);
     }
 
+//    @Lock(LockType.READ)
     @Override
     public String get(Long key) {
         return map.get(key);

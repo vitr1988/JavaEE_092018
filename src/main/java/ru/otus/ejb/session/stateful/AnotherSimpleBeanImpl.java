@@ -5,7 +5,7 @@ import javax.ejb.Stateful;
 import javax.ejb.StatefulTimeout;
 import java.util.concurrent.TimeUnit;
 
-@Stateful
+@Stateful(passivationCapable = true)
 @StatefulTimeout(value = 15, unit = TimeUnit.SECONDS)
 @Remote(AnotherSimpleBean.class)
 //@LocalBean
