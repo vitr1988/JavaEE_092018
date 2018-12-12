@@ -1,5 +1,6 @@
 package ru.otus.webservice.rest.config;
 
+import ru.otus.ejb.entity.EmployeeResource;
 import ru.otus.webservice.rest.CalculatorImpl;
 import ru.otus.webservice.rest.ReportResource;
 import ru.otus.webservice.rest.UserResource;
@@ -35,6 +36,7 @@ public class RestApplication extends Application {
         register(CalculatorImpl.class);
         register(UserResource.class);
         register(ReportResource.class);
+        register(EmployeeResource.class);
     }
 
     private void registerExceptionMapperClasses() {
