@@ -1,4 +1,4 @@
-package ru.otus.ejb.entity;
+package ru.otus.ejb.jta;
 
 import javax.ejb.*;
 import javax.transaction.Transactional;
