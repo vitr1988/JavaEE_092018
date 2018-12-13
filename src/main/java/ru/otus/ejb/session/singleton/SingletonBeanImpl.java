@@ -2,6 +2,7 @@ package ru.otus.ejb.session.singleton;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
+import javax.annotation.Resource;
 import javax.ejb.*;
 import javax.interceptor.AroundTimeout;
 import javax.interceptor.InvocationContext;
@@ -16,13 +17,13 @@ public class SingletonBeanImpl implements SingletonBean {
 
     private Map<Long, String> map;
 
-//    @Resource
-//    TimerService timerService;
+    @Resource
+    TimerService timerService;
 
     @PostConstruct
     private void init(){
         map = new ConcurrentHashMap<>();
-//        timerService.createTimer(0,1000, "Every second timer with no delay");
+        timerService.createTimer(0,1000, "Every second timer with no delay");
     }
 
 //    @Lock(LockType.WRITE)
@@ -38,6 +39,19 @@ public class SingletonBeanImpl implements SingletonBean {
     }
 
     @Schedule(hour = "*", minute = "*", second = "*/5", info = "Every 5 seconds timer")
+    public void automaticallyScheduled() {
+        System.out.println("Hello " + map.values().stream().findFirst().orElseGet(() -> "NoBody"));
+    }
+
+    @Schedules ({
+        @Schedule(dayOfMonth="Last"),
+        @Schedule(dayOfWeek="Fri", hour="23")
+    })
+    public void automaticallyScheduledAtFixedEvent() {
+        System.out.println("Trigger event " + map.values().stream().findFirst().orElseGet(() -> "NoBody"));
+    }
+
+    @Timeout
     public void automaticallyScheduled(Timer timer) {
         System.out.println("Hello " + map.values().stream().findFirst().orElseGet(() -> "NoBody"));
     }

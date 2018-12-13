@@ -4,11 +4,22 @@
     <persistence-unit name="jpa" transaction-type="JTA">
         <jta-data-source>jdbc/OracleDS</jta-data-source>
         <exclude-unlisted-classes>false</exclude-unlisted-classes>
-        <!--<properties>-->
-            <!--<property name="javax.persistence.jdbc.driver" value="oracle.jdbc.OracleDriver"/>-->
-            <!--<property name="javax.persistence.jdbc.url" value="jdbc:oracle:thin:@localhost:1521:orcl"/>-->
-            <!--<property name="javax.persistence.jdbc.user" value="scott"/>-->
-            <!--<property name="javax.persistence.jdbc.password" value="tiger"/>-->
-        <!--</properties>-->
+        <properties>
+            <property name="javax.persistence.schema-generation.database.action" value="none"/>
+            <!-- more info can be found here - https://docs.oracle.com/javaee/7/tutorial/persistence-intro005.htm
+            <property name="javax.persistence.jdbc.driver" value="oracle.jdbc.OracleDriver"/>
+            <property name="javax.persistence.jdbc.url" value="jdbc:oracle:thin:@localhost:1521:orcl"/>
+            <property name="javax.persistence.jdbc.user" value="scott"/>
+            <property name="javax.persistence.jdbc.password" value="tiger"/>
+            <property name="javax.persistence.schema-generation.create-source" value="script"/>
+            <property name="javax.persistence.schema-generation.create-script-source"
+                  value="META-INF/sql/create.sql" />
+            <property name="javax.persistence.sql-load-script-source"
+                  value="META-INF/sql/data.sql" />
+            <property name="javax.persistence.schema-generation.drop-source"
+                  value="script" />
+            <property name="javax.persistence.schema-generation.drop-script-source"
+                  value="META-INF/sql/drop.sql" /> -->
+        </properties>
     </persistence-unit>
 </persistence>
