@@ -1,4 +1,4 @@
-package ru.otus.ejb.aop;
+package ru.otus.ejb.aop.servlet;
 
 import ru.otus.ejb.aop.bean.Count;
 

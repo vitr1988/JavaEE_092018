@@ -1,10 +1,7 @@
 package ru.otus.ejb.aop.interceptor;
 
 import javax.annotation.Priority;
-import javax.interceptor.AroundInvoke;
-import javax.interceptor.Interceptor;
-import javax.interceptor.InterceptorBinding;
-import javax.interceptor.InvocationContext;
+import javax.interceptor.*;
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
@@ -27,7 +24,7 @@ public class AuditInterceptor {
     @InterceptorBinding
     @Target({ElementType.TYPE, ElementType.METHOD, ElementType.CONSTRUCTOR})
     @Retention(RetentionPolicy.RUNTIME)
-    public static @interface Auditable {
+    public @interface Auditable {
 
     }
 }

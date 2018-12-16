@@ -32,12 +32,9 @@ public class EmbeddableContainerTest {
         System.out.println("Container Closing" );
     }
 
-
-    @Test
     public void test() throws NamingException {
         AppBean bean = (AppBean) ctx.lookup("java:global/classes/AppBean");
         Assert.assertNotNull(bean);
         Assert.assertEquals("Hello Vasya", bean.sayHello("Vasya"));
-
     }
 }

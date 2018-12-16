@@ -24,7 +24,7 @@ public class EntityBean {
 //    @PersistenceUnit(unitName = "jpa")
 //    private EntityManagerFactory entityManagerFactory;
 
-    public EmpEntity loadEmployee(Long id) throws SystemException, NotSupportedException, HeuristicRollbackException, HeuristicMixedException, RollbackException {
+    public EmpEntity loadEmployee(Long id) {
         // for transaction-type="RESOURCE_LOCAL"
 //        EntityTransaction transaction = entityManager.getTransaction();
 //        transaction.begin();
