@@ -13,12 +13,16 @@ public class Logger {
 
     public static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("dd.MM.yyyy hh:mm:ss");
 
+    org.apache.log4j.Logger logger = org.apache.log4j.Logger.getLogger(Logger.class);
+
     @AroundInvoke
     public Object addLog(InvocationContext context) throws Exception {
         //какая-то логика логирования
-        if (context.getTarget() instanceof Count) {
-            System.out.println("Operation has been fixe at " + DATE_TIME_FORMATTER.format(LocalDateTime.now()));
-        }
+//        if (context.getTarget() instanceof Count) {
+//            System.out.println("Operation has been fixed at " + DATE_TIME_FORMATTER.format(LocalDateTime.now()));
+//        }
+
+        logger.info("Operation has been fixed at " + DATE_TIME_FORMATTER.format(LocalDateTime.now()));
         Object result = context.proceed();
         //TODO: after code
         return result;

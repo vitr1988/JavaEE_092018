@@ -5,7 +5,7 @@ import ru.otus.ejb.aop.interceptor.AuditInterceptor;
 import javax.ejb.Stateless;
 
 @Stateless
-@AuditInterceptor.Auditable
+@AuditInterceptor.Auditable(flag = true)
 public class AuditEJB {
 
     public String bizMethod(){
