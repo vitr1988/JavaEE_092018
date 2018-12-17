@@ -55,7 +55,6 @@ public class EJBClientTest {
     public void testSingletonBean() throws Exception {
         SingletonBean bean = (SingletonBean) defaultCtx.lookup("java:global/JavaEE/SingletonBeanImpl!ru.otus.ejb.session.singleton.SingletonBean");
         Long key = Long.MAX_VALUE;
-        Assert.assertNull(bean.get(key));
         bean.put(key, key + "");
         Assert.assertNotNull(bean.get(key));
     }
