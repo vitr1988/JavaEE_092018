@@ -30,6 +30,7 @@
     <websocket.client.version>1.12</websocket.client.version>
     <jersey.version>2.27</jersey.version>
     <aspectj.version>1.8.9</aspectj.version>
+    <codec.version>1.11</codec.version>
 
     <glassfish.location>C:/JavaEE/glassfish5</glassfish.location>
 
@@ -388,6 +389,18 @@
     </dependency>
 
     <dependency>
+      <groupId>org.glassfish.main.security</groupId>
+      <artifactId>security</artifactId>
+      <version>${glassfish.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.glassfish.main.security</groupId>
+      <artifactId>security-ee</artifactId>
+      <version>${glassfish.version}</version>
+    </dependency>
+
+    <dependency>
       <groupId>org.glassfish.main.extras</groupId>
       <artifactId>glassfish-embedded-all</artifactId>
       <version>${glassfish.version}</version>
@@ -404,6 +417,12 @@
       <groupId>org.aspectj</groupId>
       <artifactId>aspectjweaver</artifactId>
       <version>${aspectj.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>commons-codec</groupId>
+      <artifactId>commons-codec</artifactId>
+      <version>${codec.version}</version>
     </dependency>
 
     <!-- This dependency should specify at last -->
