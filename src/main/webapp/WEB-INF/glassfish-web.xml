@@ -1,4 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <glassfish-web-app>
     <class-loader delegate="true"/>
+    <security-role-mapping>
+        <role-name>ADMIN</role-name>
+        <group-name>ADMIN</group-name>
+    </security-role-mapping>
+    <security-role-mapping>
+        <role-name>MANAGER</role-name>
+        <group-name>MANAGER</group-name>
+    </security-role-mapping>
 </glassfish-web-app>

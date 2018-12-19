@@ -23,11 +23,8 @@ public class RestrictedServlet  extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 //        request.login("ADMIN", "admin");
 //        request.authenticate(response);
-
 //        Principal principal = request.getUserPrincipal();
-
 //        if (request.isUserInRole("ADMIN")) {
-//
 //        }
 
         try (PrintWriter pw = response.getWriter()) {

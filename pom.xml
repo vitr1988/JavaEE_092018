@@ -392,12 +392,24 @@
       <groupId>org.glassfish.main.security</groupId>
       <artifactId>security</artifactId>
       <version>${glassfish.version}</version>
+      <scope>system</scope>
+      <systemPath>C:/JavaEE/glassfish5/glassfish/modules/security.jar</systemPath>
     </dependency>
 
     <dependency>
       <groupId>org.glassfish.main.security</groupId>
       <artifactId>security-ee</artifactId>
       <version>${glassfish.version}</version>
+      <scope>system</scope>
+      <systemPath>C:/JavaEE/glassfish5/glassfish/modules/security-ee.jar</systemPath>
+    </dependency>
+
+    <dependency>
+      <groupId>org.glassfish.main.common</groupId>
+      <artifactId>glassfish-ee-api</artifactId>
+      <version>${glassfish.version}</version>
+      <scope>system</scope>
+      <systemPath>C:/JavaEE/glassfish5/glassfish/modules/glassfish-ee-api.jar</systemPath>
     </dependency>
 
     <dependency>
