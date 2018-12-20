@@ -82,6 +82,14 @@
     <description>Administrators of the system</description>
     <role-name>ADMIN</role-name>
   </security-role>
+  <security-role>
+    <description>Managers of the system</description>
+    <role-name>MANAGER</role-name>
+  </security-role>
+  <security-role>
+    <description>Anonymous of the system</description>
+    <role-name>ANONYMOUS</role-name>
+  </security-role>
 
   <security-role>
     <role-name>*</role-name>
@@ -108,6 +116,7 @@
     <web-resource-collection>
       <web-resource-name>Restricted resources</web-resource-name>
       <url-pattern>/login.jsp</url-pattern>
+      <!--<url-pattern>/css/*</url-pattern>-->
     </web-resource-collection>
     <auth-constraint>
       <role-name>ADMIN</role-name>
@@ -123,4 +132,9 @@
       <form-error-page>/WEB-INF/loginError.html</form-error-page>
     </form-login-config>
   </login-config>
+
+  <!--<login-config>
+    <auth-method>BASIC</auth-method>
+    <realm-name>SecurityRealm</realm-name>
+  </login-config>-->
 </web-app>
