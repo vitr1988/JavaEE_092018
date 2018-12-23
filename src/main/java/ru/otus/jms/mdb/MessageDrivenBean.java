@@ -1,6 +1,7 @@
 package ru.otus.jms.mdb;
 
 import javax.annotation.Resource;
+import javax.ejb.ActivationConfigProperty;
 import javax.ejb.MessageDriven;
 import javax.ejb.MessageDrivenContext;
 import javax.jms.JMSException;
@@ -9,8 +10,13 @@ import javax.jms.MessageListener;
 import javax.jms.TextMessage;
 
 @MessageDriven(
-        mappedName="jms/Topic", //имя topic или queue, на который подписан бин
-        name = "ExampleMDB")
+        mappedName="jms/Topic" //имя topic или queue, на который подписан бин
+        , name = "ExampleMDB"
+//        , activationConfig = {
+//                @ActivationConfigProperty(propertyName = "acknowledgeMode", propertyValue = "Auto-acknowledge"),
+//                @ActivationConfigProperty(propertyName = "messageSelector", propertyValue = "orderAmount < 3000")
+//        }
+)
 public class MessageDrivenBean implements MessageListener {
 
     @Resource
