@@ -21,8 +21,8 @@ public class RestrictredBean {
 //    @Resource
 //    private EJBContext context;
 
-    @DenyAll
-    @PermitAll
+//    @DenyAll
+//    @PermitAll
     @RolesAllowed({"ADMIN", "MANAGER"})
     public void printSomething() {
 //        Principal callerPrincipal = context.getCallerPrincipal();
