@@ -13,23 +13,23 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-@WebServlet("/jms")
-public class JMSServlet extends HttpServlet {
+@WebServlet("/topic")
+public class TopicServlet extends HttpServlet {
 
     @Inject
     @JMSConnectionFactory("jms/TopicConnectionFactory")
     private JMSContext context;
 
     @Resource(lookup = "jms/Topic")
-    private Destination dataQueue; // Topic or Queue
+    private Destination dataTopic;
 
-    public void sendMessageJavaEE7(String body) {
-        context.createProducer().send(dataQueue, body);
+    public void sendMessage(String body) {
+        context.createProducer().send(dataTopic, body);
     }
 
     public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws IOException, ServletException {
-        sendMessageJavaEE7("Hello from servlet");
+        sendMessage("Hello from servlet in the topic");
 
         response.setContentType("text/html");
         try(PrintWriter pw = response.getWriter()){
