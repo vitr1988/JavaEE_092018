@@ -8,7 +8,7 @@ import javax.servlet.annotation.WebListener;
 
 @WebListener
 public class JMSConnectionListener implements ServletContextListener {
-
+//    mq://localhost:7676
     //получаем ресурсы сервера для отправки сообщений
     @Resource(name = "jms/TopicConnectionFactory")
     private ConnectionFactory connectionFactory;
@@ -27,6 +27,7 @@ public class JMSConnectionListener implements ServletContextListener {
             TextMessage message = session.createTextMessage();
             //добавим в JMS сообщение собственное свойство в поле сообщения со свойствами
             message.setStringProperty("clientType", "web client");
+            message.setIntProperty("age", 18);
             //добавляем payload в сообщение
             message.setText(enterString);
             //отправляем сообщение

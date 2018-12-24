@@ -2,6 +2,7 @@ package ru.otus.jms.mdb;
 
 import javax.annotation.Resource;
 import javax.ejb.ActivationConfigProperty;
+import javax.ejb.EJBContext;
 import javax.ejb.MessageDriven;
 import javax.ejb.MessageDrivenContext;
 import javax.jms.JMSException;
@@ -21,6 +22,9 @@ public class MessageDrivenBean implements MessageListener {
 
     @Resource
     MessageDrivenContext messageDrivenContext;
+
+//    @Resource
+//    EJBContext messageDrivenContext;
 
     //метод, вызываемый при получении нового сообщения
     @Override
