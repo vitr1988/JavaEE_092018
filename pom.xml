@@ -31,6 +31,8 @@
     <jersey.version>2.27</jersey.version>
     <aspectj.version>1.8.9</aspectj.version>
     <codec.version>1.11</codec.version>
+    <jasperreports.version>6.7.0</jasperreports.version>
+    <poi.version>4.0.1</poi.version>
 
     <glassfish.location>C:/JavaEE/glassfish5</glassfish.location>
 
@@ -385,7 +387,7 @@
       <artifactId>gf-client</artifactId>
       <version>${glassfish.version}</version>
       <scope>system</scope>
-      <systemPath>C:/JavaEE/glassfish5/glassfish/lib/gf-client.jar</systemPath>
+      <systemPath>F:/glassfish-5.0/glassfish5/glassfish/lib/gf-client.jar</systemPath>
     </dependency>
 
     <dependency>
@@ -393,7 +395,7 @@
       <artifactId>security</artifactId>
       <version>${glassfish.version}</version>
       <scope>system</scope>
-      <systemPath>C:/JavaEE/glassfish5/glassfish/modules/security.jar</systemPath>
+      <systemPath>F:/glassfish-5.0/glassfish5/glassfish/modules/security.jar</systemPath>
     </dependency>
 
     <dependency>
@@ -401,7 +403,7 @@
       <artifactId>security-ee</artifactId>
       <version>${glassfish.version}</version>
       <scope>system</scope>
-      <systemPath>C:/JavaEE/glassfish5/glassfish/modules/security-ee.jar</systemPath>
+      <systemPath>F:/glassfish-5.0/glassfish5/glassfish/modules/security-ee.jar</systemPath>
     </dependency>
 
     <dependency>
@@ -409,7 +411,7 @@
       <artifactId>glassfish-ee-api</artifactId>
       <version>${glassfish.version}</version>
       <scope>system</scope>
-      <systemPath>C:/JavaEE/glassfish5/glassfish/modules/glassfish-ee-api.jar</systemPath>
+      <systemPath>F:/glassfish-5.0/glassfish5/glassfish/modules/glassfish-ee-api.jar</systemPath>
     </dependency>
 
     <dependency>
@@ -437,7 +439,25 @@
       <version>${codec.version}</version>
     </dependency>
 
-    <!-- This dependency should specify at last -->
+    <dependency>
+      <groupId>net.sf.jasperreports</groupId>
+      <artifactId>jasperreports</artifactId>
+      <version>${jasperreports.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.apache.poi</groupId>
+      <artifactId>poi</artifactId>
+      <version>${poi.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.apache.poi</groupId>
+      <artifactId>poi-ooxml</artifactId>
+      <version>${poi.version}</version>
+    </dependency>
+
+      <!-- This dependency should specify at last -->
     <dependency>
       <groupId>javax</groupId>
       <artifactId>javaee-api</artifactId>
