@@ -7,10 +7,7 @@ import net.sf.jasperreports.engine.export.JRCsvExporter;
 import net.sf.jasperreports.engine.export.JRPdfExporter;
 import net.sf.jasperreports.engine.export.JRXmlExporter;
 import net.sf.jasperreports.engine.export.ooxml.JRXlsxExporter;
-import net.sf.jasperreports.export.Exporter;
-import net.sf.jasperreports.export.SimpleExporterInput;
-import net.sf.jasperreports.export.SimpleHtmlExporterOutput;
-import net.sf.jasperreports.export.SimpleOutputStreamExporterOutput;
+import net.sf.jasperreports.export.*;
 import org.apache.log4j.Logger;
 import org.apache.logging.log4j.core.util.FileUtils;
 
@@ -62,17 +59,23 @@ public class ReportExporter {
         yourFile.createNewFile(); // if file already exists will do nothing
         FileOutputStream out = new FileOutputStream(yourFile, false);
 
-        boolean html = false;
+        boolean specialExporter = false;
 
         switch (format) {
             case HTML:
                 exporter = new HtmlExporter();
                 exporter.setExporterOutput(new SimpleHtmlExporterOutput(out));
-                html = true;
+                specialExporter = true;
                 break;
 
             case CSV:
                 exporter = new JRCsvExporter();
+                exporter.setExporterOutput(new SimpleWriterExporterOutput(out));
+                SimpleCsvExporterConfiguration csvConfiguration = new SimpleCsvExporterConfiguration();
+                csvConfiguration.setWriteBOM(Boolean.TRUE);
+                csvConfiguration.setRecordDelimiter("\r\n");
+                exporter.setConfiguration(csvConfiguration);
+                specialExporter = true;
                 break;
 
             case XML:
@@ -91,7 +94,7 @@ public class ReportExporter {
                 throw new JRException("Unknown report format: " + format.toString());
         }
 
-        if (!html) {
+        if (!specialExporter) {
             exporter.setExporterOutput(new SimpleOutputStreamExporterOutput(out));
         }
 
