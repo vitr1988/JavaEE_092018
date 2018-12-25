@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="employeeReport" pageWidth="612" pageHeight="792" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" isTitleNewPage="true" uuid="084ba399-bfc4-45f4-b365-9c5b7f2ac650">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="title" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="condition" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA[" 1 = 1"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="minSalary" class="java.math.BigDecimal" isForPrompting="false"/>
+	<queryString>
+		<![CDATA[SELECT * FROM EMP WHERE SAL >= $P{minSalary} AND $P!{condition}]]>
+	</queryString>
+	<field name="EMPNO" class="java.math.BigDecimal"/>
+	<field name="ENAME" class="java.lang.String"/>
+	<field name="JOB" class="java.lang.String"/>
+	<field name="MGR" class="java.math.BigDecimal"/>
+	<field name="HIREDATE" class="java.sql.Timestamp"/>
+	<field name="SAL" class="java.math.BigDecimal"/>
+	<field name="COMM" class="java.math.BigDecimal"/>
+	<field name="DEPTNO" class="java.math.BigDecimal"/>
+	<title>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement x="238" y="0" width="100" height="20" uuid="40d8ebba-5a49-4d51-ae7f-0481de2e3ee2"/>
+				<textFieldExpression><![CDATA[$P{title}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<detail>
+		<band height="47" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="100" height="20" uuid="c838a477-6677-4105-b78c-11e2f94606e7"/>
+				<textFieldExpression><![CDATA[$F{EMPNO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="100" y="0" width="100" height="20" uuid="0f9dedaa-6061-4338-86d5-5d9a2bc81a18"/>
+				<textFieldExpression><![CDATA[$F{ENAME}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="200" y="0" width="100" height="20" uuid="ec5f569a-2584-4597-8eb0-a149bcdf4f4e"/>
+				<textFieldExpression><![CDATA[$F{SAL}]]></textFieldExpression>
+			</textField>
+			<subreport>
+				<reportElement x="0" y="20" width="300" height="27" uuid="9473f0b5-d83e-4c8c-a85c-f57a21c12f7c"/>
+				<subreportParameter name="deptNo">
+					<subreportParameterExpression><![CDATA[$F{DEPTNO}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA["employeeEmailReport.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+</jasperReport>

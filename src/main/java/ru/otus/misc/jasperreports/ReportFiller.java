@@ -4,6 +4,7 @@ import net.sf.jasperreports.engine.*;
 import net.sf.jasperreports.engine.util.JRSaver;
 import org.apache.log4j.Logger;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.sql.DataSource;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -25,6 +26,8 @@ public class ReportFiller {
 
     private Map<String, Object> parameters;
 
+    private HttpServletRequest request;
+
     public ReportFiller() {
         parameters = new HashMap<>();
     }
@@ -36,7 +39,8 @@ public class ReportFiller {
 
     public void compileReport() {
         try {
-            InputStream reportStream = getClass().getResourceAsStream("/".concat(reportFileName));
+            InputStream reportStream = request == null ? getClass().getResourceAsStream("/".concat(reportFileName))
+                    : request.getServletContext().getResourceAsStream("/WEB-INF/classes/".concat(reportFileName));
             jasperReport = JasperCompileManager.compileReport(reportStream);
             JRSaver.saveObject(jasperReport, reportFileName.replace(".jrxml", ".jasper"));
         } catch (JRException ex) {
@@ -90,4 +94,11 @@ public class ReportFiller {
         return jasperPrint;
     }
 
+    public HttpServletRequest getRequest() {
+        return request;
+    }
+
+    public void setRequest(HttpServletRequest request) {
+        this.request = request;
+    }
 }

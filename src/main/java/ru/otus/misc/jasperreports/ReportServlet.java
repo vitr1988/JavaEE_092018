@@ -29,6 +29,7 @@ public class ReportServlet extends HttpServlet {
             }
         });
         filler.setReportFileName(otusReport +  ".jrxml");
+        filler.setRequest(request);
         filler.prepareReport();
 
         response.setContentType("application/pdf");

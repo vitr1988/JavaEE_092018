@@ -387,7 +387,7 @@
       <artifactId>gf-client</artifactId>
       <version>${glassfish.version}</version>
       <scope>system</scope>
-      <systemPath>F:/glassfish-5.0/glassfish5/glassfish/lib/gf-client.jar</systemPath>
+      <systemPath>C:/JavaEE/glassfish5/glassfish/lib/gf-client.jar</systemPath>
     </dependency>
 
     <dependency>
@@ -395,7 +395,7 @@
       <artifactId>security</artifactId>
       <version>${glassfish.version}</version>
       <scope>system</scope>
-      <systemPath>F:/glassfish-5.0/glassfish5/glassfish/modules/security.jar</systemPath>
+      <systemPath>C:/JavaEE/glassfish5/glassfish/modules/security.jar</systemPath>
     </dependency>
 
     <dependency>
@@ -403,7 +403,7 @@
       <artifactId>security-ee</artifactId>
       <version>${glassfish.version}</version>
       <scope>system</scope>
-      <systemPath>F:/glassfish-5.0/glassfish5/glassfish/modules/security-ee.jar</systemPath>
+      <systemPath>C:/JavaEE/glassfish5/glassfish/modules/security-ee.jar</systemPath>
     </dependency>
 
     <dependency>
@@ -411,7 +411,7 @@
       <artifactId>glassfish-ee-api</artifactId>
       <version>${glassfish.version}</version>
       <scope>system</scope>
-      <systemPath>F:/glassfish-5.0/glassfish5/glassfish/modules/glassfish-ee-api.jar</systemPath>
+      <systemPath>C:/JavaEE/glassfish5/glassfish/modules/glassfish-ee-api.jar</systemPath>
     </dependency>
 
     <dependency>
